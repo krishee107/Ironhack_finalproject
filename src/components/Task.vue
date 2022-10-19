@@ -3,7 +3,7 @@
         <div class="container">
             <div class="cards columns is-multiline " >
 
-                <div class="column is-4-desktop is-4-tablet is-6-mobile" v-for="task in taskStore.tasks">
+                <div class="column is-4-desktop is-4-tablet is-6-mobile" :class="{}" v-for="task in taskStore.tasks">
                     <div class="card">
                         <header class="card-header card-header-title">
                             {{task.title}}
@@ -14,10 +14,16 @@
                                 <div class="todo-description">{{task.description}} </div>
                                 <div class="todo-date">{{moment(String(task.created_at)).format('DD/MM/YYYY - hh:mm')}} </div>
                             </div>
-                            <div class="buttons columns has-text-centered" >
-                                <i  @click="completarTarea(task.id, task)" class="column fa-regular fa-square-check"></i>
+                            <div class="buttons columns has-text-centered" v-if="task.status == 'activa'" >
+                                <i  @click="cambiarEstadoTarea(task.id, task)" class="column fa-regular fa-square-check"></i>
                                 <i class="column fa-regular fa-pen-to-square"></i>
                                 <i  @click="borrarTarea(task.id)" class="column fa-regular fa-trash-can"></i>
+                            </div>
+                            <div v-else>
+                                <div class="buttons columns has-text-centered">
+                                    <i @click="cambiarEstadoTarea(task.id, task)"  class="column fa-solid fa-arrow-rotate-right"></i>
+                                    <i  @click="borrarTarea(task.id)" class="column fa-regular fa-trash-can"></i>
+                                </div>
                             </div>
                         </div>
 
@@ -52,8 +58,12 @@ const borrarTarea = async (id) =>{
     });
 }
 console.log(taskStore.tasks)
-const completarTarea = async(id, task) =>{
-    task.status = "completada";
+const cambiarEstadoTarea = async(id, task) =>{
+    if(task.status == "completada")
+        task.status = "activa"
+    else if(task.status = "activa")
+        task.status = "completada"  
+        
     const status = await updateTask(id, task).then((res) =>{
         taskStore.updateTask(id, task);
     })
