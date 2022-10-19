@@ -16,7 +16,7 @@
                             </div>
                             <div class="buttons columns has-text-centered" >
                                 <i class="column fa-regular fa-square-check"></i>
-                                <i class="column fa-solid fa-pen-to-square"></i>
+                                <i class="column fa-regular fa-pen-to-square"></i>
                                 <i class="column fa-regular fa-trash-can"></i>
                             </div>
                         </div>
@@ -48,4 +48,12 @@ onMounted(async () =>{
 </script>
 
 <style scoped>
+
+i{
+    cursor:  pointer;
+    font-size: 20px;
+}i:hover{font-weight: bold;}
+i.fa-square-check{color:green}
+i.fa-pen-to-square{color:blue}
+i.fa-trash-can{color:red}
 </style>
