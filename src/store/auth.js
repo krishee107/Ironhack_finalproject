@@ -18,8 +18,7 @@ export const useAuthStore = defineStore('auth', {
             this.isAuth=true;
             this.id = id;
             this.email = email;
-            console.log("Logged");
-            console.log(this.isAuth)
+            return true
         },
 
         logout(){

@@ -2,7 +2,6 @@
     <div class="section">
         <div class="container">
             <div  v-if="!authStore.isAuth">
-                <h1>Login</h1>
                 <form @submit.prevent="onSubmit">
                     <div class="field">
                         <label class="label">Email</label>
@@ -34,6 +33,7 @@
 
 <script setup>
 import {ref} from 'vue';
+import router from '../router'
 import { register } from "../api";
 import {useAuthStore} from '../store/index'
 
@@ -47,7 +47,9 @@ const onSubmit = async () =>{
     const status = await register(email.value, password.value);
     if(status != null){
         let id = status.data.user.id
-        authStore.login(id, email.value);
+        await authStore.login(id, email.value).then(
+            router.replace({ path: '/' })
+        )
     }
 }
 </script>
