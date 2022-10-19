@@ -78,4 +78,7 @@ export const deleteTask = async(taskId)=>{
     .from('task')
     .delete()
     .eq('id', taskId)
+
+    if(response) return true;
+    else return false
   }
