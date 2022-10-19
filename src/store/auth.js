@@ -8,13 +8,18 @@ export const useAuthStore = defineStore('auth', {
             // Nos indicara si el usuario esta autenticado
             isAuth: false,
             // Guardaremos el id de supabase que nos dara al hacer el login
-            id: undefined
+            id: undefined,
+            email: ''
         }
     },
     actions: {
-        login() {
+        login(id, email) {
             // TODO cambiar el estado  de autenticacion e id del usuario
             this.isAuth=true;
+            this.id = id;
+            this.email = email;
+            console.log("Logged");
+            console.log(this.isAuth)
         },
 
         logout(){

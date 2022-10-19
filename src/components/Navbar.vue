@@ -1,6 +1,7 @@
 <template>
 
     <nav class="navbar p-4 is-align-items-center" role="navigation" aria-label="main navigation">
+      {{authStore.isAuth}}
       <div class="navbar-brand">
         <a class="navbar-item" href="https://bulma.io">
           <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
@@ -13,7 +14,7 @@
         </a>
       </div>
     
-      <div class="navbar-menu" v-if="isAuth">
+      <div class="navbar-menu" v-if="authStore.isAuth">
             <div class="navbar-start">
                 <router-link class="navbar-item button is-link is-outlined" :to="{name: 'home'}">Home</router-link>
             </div>
@@ -36,9 +37,9 @@
 
     <script setup>
     import {useTaskStore, useAuthStore} from '../store/index'
+    import {ref} from 'vue'
 
-    let isAuth = true;
-    isAuth = useAuthStore.isAuth;
+    const authStore = useAuthStore();
     </script>
 
     <style scoped>

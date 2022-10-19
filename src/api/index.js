@@ -9,6 +9,14 @@ export const register = async (email, password) =>{
           password
         })
     //todo identificar el return y retornar lo que nos interese
+    if(response.error == null) return response;
+    else if(response.error == 422){
+      //422 - la contraseña tiene que tener +6 caracteres
+      console.log("La contraseña tiene que ser mayor de 6 caracteres");
+      return false
+    }
+    //429"For security purposes, you can only request this after 60 seconds."
+    console.log(response)
   }
 
 export const login = async (email, password) =>{
