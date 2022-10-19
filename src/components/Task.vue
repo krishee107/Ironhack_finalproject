@@ -1,10 +1,29 @@
 <template>
-    <div v-for="task in taskStore.tasks">
-        Id: {{task.id}}
-        {{task.title}}
-        {{task.description}}
-        {{task.created_at}}
+    <div class="section">
+        <div class="container">
+            <div class="cards columns is-multiline " >
+
+                <div class="column is-4-desktop is-4-tablet is-6-mobile" v-for="task in taskStore.tasks">
+                    <div class="card">
+                        <header class="card-header card-header-title">
+                            {{task.title}}
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                {{task.description}}        
+                            </div>
+                        </div>
+
+                        {{task.created_at}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
+
+    
+
 </template>
 
 <script setup>
