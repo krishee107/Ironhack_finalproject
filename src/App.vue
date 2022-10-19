@@ -6,10 +6,22 @@
 
 <script setup>
 import Navbar from './components/Navbar.vue';
-import { createClient } from '@supabase/supabase-js'
+import { onMounted } from 'vue';
+import {login, newTask} from './api'
 
-const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY);
-console.log(supabase)
+
+onMounted( async ()=>{
+  const id = await login('krishee107@gmail.com', 'cristina');
+  newTask({
+    user_id: id,
+    title: 'Titulo random',
+    description: 'Descripcion aa'
+
+  })
+})
+
+
+
 </script>
 <style scoped>
 </style>
