@@ -45,7 +45,7 @@ const authStore = useAuthStore();
 
 const onSubmit = async () =>{
     const status = await register(email.value, password.value);
-    if(status != null){
+    if(status != null && status != false){
         let id = status.data.user.id
         await authStore.login(id, email.value).then(
             router.replace({ path: '/' })

@@ -24,7 +24,9 @@ export const login = async (email, password) =>{
           email,
           password
     })
-    return response.data.user.id
+    if(response)
+      return response.data.user.id
+    return false
 }
 
 /*
