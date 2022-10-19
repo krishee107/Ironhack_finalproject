@@ -19,7 +19,7 @@
                 <router-link class="navbar-item button is-link is-outlined" :to="{name: 'home'}">Home</router-link>
             </div>
             <div class="navbar-end">
-                <div class="navbar-item button is-danger is-light mr-4" >Logout</div>            
+                <button class="navbar-item button is-danger is-light mr-4" @click="authStore.logout()">Logout</button>            
             </div>
       </div>
       <div id="navbarBasicExample " class="navbar-menu" v-else>
