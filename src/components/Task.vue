@@ -8,13 +8,14 @@
                         <header class="card-header card-header-title">
                             {{task.title}}
                         </header>
+
                         <div class="card-content">
                             <div class="content">
-                                {{task.description}}        
+                                <div class="todo-description">{{task.description}} </div>
+                                <div class="todo-date">{{moment(String(task.created_at)).format('DD/MM/YYYY - hh:mm')}} </div>
                             </div>
                         </div>
-
-                        {{task.created_at}}
+                        
                     </div>
                 </div>
 
@@ -30,6 +31,7 @@
 import {useTaskStore} from '../store/index'
 import {getTasks} from '../api/index'
 import { onMounted } from 'vue';
+import moment from 'moment'
 
 const taskStore = useTaskStore();
 let task ; 
