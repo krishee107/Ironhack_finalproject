@@ -1,7 +1,6 @@
 <template>
 
     <nav class="navbar p-4 is-align-items-center" role="navigation" aria-label="main navigation">
-      {{authStore.isAuth}}
       <div class="navbar-brand">
         <a class="navbar-item" href="https://bulma.io">
           <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
@@ -19,7 +18,18 @@
                 <router-link class="navbar-item button is-link is-outlined" :to="{name: 'home'}">Home</router-link>
             </div>
             <div class="navbar-end">
-                <button class="navbar-item button is-danger is-light mr-4" @click="authStore.logout()">Logout</button>            
+              <!-- Dark mode -->
+              <div class="select mr-4">
+                <select>
+                  <option>Bubbles</option>
+                  <option>Dark mode</option>
+                  <option>Pink mode</option>
+                </select>
+              </div>
+              <!-- Perfil -->
+                <router-link class="navbar-item button is-link is-outlined mr-4" :to="{name: 'home'}">Perfil</router-link>
+                <!-- Logout-->
+                <button class="navbar-item button is-danger is-light " @click="authStore.logout()">Logout</button>            
             </div>
       </div>
       <div id="navbarBasicExample " class="navbar-menu" v-else>
