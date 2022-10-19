@@ -14,16 +14,19 @@
                                 <div class="todo-description">{{task.description}} </div>
                                 <div class="todo-date">{{moment(String(task.created_at)).format('DD/MM/YYYY - hh:mm')}} </div>
                             </div>
+                            <div class="buttons columns has-text-centered" >
+                                <i class="column fa-regular fa-square-check"></i>
+                                <i class="column fa-solid fa-pen-to-square"></i>
+                                <i class="column fa-regular fa-trash-can"></i>
+                            </div>
                         </div>
-                        
+
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
-
-    
 
 </template>
 
