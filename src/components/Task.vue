@@ -3,7 +3,7 @@
         <div class="container">
             <div class="cards columns is-multiline " >
 
-                <div class="column is-4-desktop is-4-tablet is-6-mobile" :class="{}" v-for="task in taskStore.tasks">
+                <div class="column is-4-desktop is-4-tablet is-6-mobile" :class="task.status" v-for="task in taskStore.tasks">
                     <div class="card">
                         <header class="card-header card-header-title">
                             {{task.title}}
@@ -80,4 +80,11 @@ i{
 i.fa-square-check{color:green}
 i.fa-pen-to-square{color:blue}
 i.fa-trash-can{color:red}
+
+
+/* Tareas completadas */
+.completada .card {
+    background: #efefef;
+    border: solid 1px lightgray;
+}
 </style>
