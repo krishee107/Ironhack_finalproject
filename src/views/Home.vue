@@ -2,7 +2,7 @@
     <div class="section">
         <div class="container">
             <div class="logged" v-if="authStore.isAuth">
-                <h1>Home</h1>
+                <NewTask/>
 
                 <TaskList/>
             </div>
@@ -26,6 +26,7 @@
 import {ref} from 'vue'
 import {useAuthStore} from '../store/index'
 import TaskList from '../components/TaskList.vue';
+import NewTask from '../components/NewTask.vue';
 
 const authStore = useAuthStore();
 
