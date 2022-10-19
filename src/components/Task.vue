@@ -15,7 +15,7 @@
                                 <div class="todo-date">{{moment(String(task.created_at)).format('DD/MM/YYYY - hh:mm')}} </div>
                             </div>
                             <div class="buttons columns has-text-centered" >
-                                <i  class="column fa-regular fa-square-check"></i>
+                                <i  @click="completarTarea(task.id, task)" class="column fa-regular fa-square-check"></i>
                                 <i class="column fa-regular fa-pen-to-square"></i>
                                 <i  @click="borrarTarea(task.id)" class="column fa-regular fa-trash-can"></i>
                             </div>
@@ -32,24 +32,31 @@
 
 <script setup>
 import {useTaskStore} from '../store/index'
-import {deleteTask, getTasks} from '../api/index'
+import {deleteTask, getTasks, updateTask} from '../api/index'
 import { onMounted } from 'vue';
 import moment from 'moment'
 
 const taskStore = useTaskStore();
 let task ; 
-
+//taskStore.resetTask();
 onMounted(async () =>{
     if(taskStore.tasks.length == 0){
         task = await getTasks();
         taskStore.tasks = task;
     }
 })
-taskStore.resetTask();
+
 const borrarTarea = async (id) =>{
     const status = await deleteTask(id).then(() =>{
         taskStore.deleteTask(id);
     });
+}
+console.log(taskStore.tasks)
+const completarTarea = async(id, task) =>{
+    task.status = "completada";
+    const status = await updateTask(id, task).then((res) =>{
+        taskStore.updateTask(id, task);
+    })
 }
 
 </script>

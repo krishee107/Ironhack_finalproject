@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { getTasks } from '../api'
 
 export const useTaskStore = defineStore('task', {
     // arrow function recommended for full type inference
@@ -23,8 +22,11 @@ export const useTaskStore = defineStore('task', {
         },
 
         updateTask(id, task) {
-            // TODO modificar el estado de la task
-            // Encontrar el indice de la task con ese id y cambiar su contenido con task
+            for(let i = 0; i< this.tasks.length; i++){
+                if(this.tasks[i].id == id){
+                    this.tasks[i] = task;
+                }  
+            }
         },
 
         deleteTask(id) {

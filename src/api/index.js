@@ -65,7 +65,7 @@ export const getTasks = async () =>{
 export const updateTask = async (taskId, task)=>{
     const response = await supabase
     .from('task')
-    .update()
+    .update(task)
     .eq('id', taskId)
     
     //todo identificar el return y retornar lo que nos interese
