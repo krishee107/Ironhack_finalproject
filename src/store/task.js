@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { updateTask } from '../api'
+import { getTasks } from '../api'
 
 export const useTaskStore = defineStore('task', {
     // arrow function recommended for full type inference
@@ -11,7 +11,13 @@ export const useTaskStore = defineStore('task', {
         }
     },
     actions: {
-
+        getTask(){
+          return this.tasks  
+        },
+        resetTask(){
+            this.tasks = [];
+            return true;
+        },
         setTask() {
             //TODO guardar en el stado las task que nos de supabase
         },
@@ -33,5 +39,8 @@ export const useTaskStore = defineStore('task', {
 
 
 
+    },
+    persist: {
+      enabled: true
     }
 })

@@ -52,7 +52,8 @@ export const getTasks = async () =>{
     .select('*')
     .order('id', {ascending: false})
   
-    return response.data;
+   if(response) return response.data;
+   else return false
 }
 
 
