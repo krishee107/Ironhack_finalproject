@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { getTasks } from '../api/index'
 
 export const useTaskStore = defineStore('task', {
     // arrow function recommended for full type inference
@@ -10,8 +11,10 @@ export const useTaskStore = defineStore('task', {
         }
     },
     actions: {
-        getTask(){
-          return this.tasks  
+        async getTask() {
+             this.tasks =  await getTasks();
+             console.log(this.tasks)
+             return this.tasks;
         },
         resetTask(){
             this.tasks = [];
@@ -34,9 +37,11 @@ export const useTaskStore = defineStore('task', {
             return true;
         },
 
-        addTask(task) {
-            // TODO modificar el estado de task haciendo un push de la task
-            // Comprobar que tenemos el id al insertar el registro, en caso de no tenerlo tendriamos que hacer el getTask
+        addTask() {
+            //reseteamos el array de tasks
+            this.resetTask();
+            //Añadimos todos de nuevo
+            this.getTask();
         }
 
 

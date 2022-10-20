@@ -57,7 +57,7 @@ const borrarTarea = async (id) =>{
         taskStore.deleteTask(id);
     });
 }
-console.log(taskStore.tasks)
+
 const cambiarEstadoTarea = async(id, task) =>{
     if(task.status == "completada")
         task.status = "activa"

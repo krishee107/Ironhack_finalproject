@@ -9,7 +9,7 @@
                 </div>
                 <div class="field" v-if="title.length > 0">
                     <div class="control is-large">
-                        <input class="input is-large" v-model="description" type="text" placeholder="Introduce la  descripción de la nueva tarea...">
+                        <input class="input is-large" v-model="description" type="text" placeholder="Introduce la  descripción de la nueva tarea..." required  v-on:keyup.enter="onSubmit">
                     </div>
                 </div>
 
@@ -21,12 +21,25 @@
 
 <script setup>
 import {ref} from 'vue'
+import { newTask } from '../api/index'
+import { useAuthStore, useTaskStore} from '../store/index'
+
+const authStore = useAuthStore();
+const taskStore = useTaskStore();
 
 const title = ref('');
 const description = ref();
 
-const onSubmit = ()=>{
-    console.log(title, description)
+const onSubmit = async ()=>{
+    let task = {
+        user_id: authStore.id,
+        title: title.value,
+        description: description.value,
+        status: 'activa'
+    }
+    const status = await newTask(task).then(()=>{
+        taskStore.addTask();
+    })
 }
 </script>
 

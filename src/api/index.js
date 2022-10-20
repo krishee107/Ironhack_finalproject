@@ -39,11 +39,15 @@ task{
 
 export const newTask = async (task) =>{
     const response = await supabase.from('task')
-    .insert(task)
+    .insert({
+      user_id: task.user_id, 
+      title: task.title,
+      description: task.description
+    })
 
-    //todo identificar el return y retornar lo que nos interese
-    //if(response) return true;
-    //return false;
+    //                             ---                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  todo identificar el return y retornar lo que nos interese
+    if(response) return true;
+    return false;
   }
 
 export const getTasks = async () =>{
