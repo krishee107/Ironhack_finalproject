@@ -46,7 +46,7 @@ export const newTask = async (task) =>{
     })
 
     //                             ---                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  todo identificar el return y retornar lo que nos interese
-    if(response) return true;
+    if(response.status == 201) return true;
     return false;
   }
 

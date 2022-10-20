@@ -37,7 +37,8 @@ const onSubmit = async ()=>{
         description: description.value,
         status: 'activa'
     }
-    const status = await newTask(task).then(()=>{
+    const status = await newTask(task).then((res)=>{
+        console.log(res)
         taskStore.addTask();
     })
 }
