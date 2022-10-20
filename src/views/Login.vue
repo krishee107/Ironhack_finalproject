@@ -2,24 +2,23 @@
     <div class="section">
         <div class="container">
             <div v-if="!authStore.isAuth">
-
                 <form @submit.prevent="onSubmit">
                     <div class="field">
                         <p class="control has-icons-left has-icons-right">
                             <input class="input" type="email" placeholder="Email" v-model="email" required>
                             <span class="icon is-small is-left">
-                            <i class="fas fa-envelope"></i>
+                                <i class="fas fa-envelope"></i>
                             </span>
                             <span class="icon is-small is-right">
-                            <i class="fas fa-check"></i>
+                                <i class="fas fa-check"></i>
                             </span>
                         </p>
                         </div>
                         <div class="field">
                         <p class="control has-icons-left">
-                            <input class="input" type="password" placeholder="Password"  v-model="password" required >
+                            <input class="input" type="password" placeholder="Password"  v-model="password" required>
                             <span class="icon is-small is-left">
-                            <i class="fas fa-lock"></i>
+                                <i class="fas fa-lock"></i>
                             </span>
                         </p>
                         </div>
@@ -64,20 +63,14 @@ const authStore = useAuthStore();
 
 const email = ref();
 const password = ref();
-const errMsg = ref();
 
 const onSubmit = async () =>{
-    if(email.value.length == 0 || password.value.length == 0) {
-        errMsg = "El email o la contraseña no pueden estar vacíos.";
-    }else{
         const status = await login(email.value, password.value);
         if(status != null && status != false){
             const login = authStore.login(status, email.value);
             if(login)
                 router.replace({ path: '/' })
         }
-    }
-
 }
 </script>
 
