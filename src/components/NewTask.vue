@@ -38,6 +38,8 @@ const onSubmit = async ()=>{
     }
     const status = await newTask(task).then((res)=>{
         taskStore.addTask();
+        title.value = '';
+        description.value= '';
     })
 }
 </script>
