@@ -1,6 +1,6 @@
 <template>
     <div class="section">
-        <div class="container">
+        <div class="container is-justify-content-center">
             <div v-if="!authStore.isAuth">
                 <form @submit.prevent="onSubmit">
                     <div class="field">
@@ -14,7 +14,7 @@
                             </span>
                         </p>
                         </div>
-                        <div class="field">
+                        <div class="field mt-5">
                         <p class="control has-icons-left">
                             <input class="input" type="password" placeholder="Password"  v-model="password" required>
                             <span class="icon is-small is-left">
@@ -22,9 +22,9 @@
                             </span>
                         </p>
                         </div>
-                        <div class="field">
+                        <div class="field mt-5">
                         <p class="control">
-                            <button class="button is-success">
+                            <button class="button is-success is-fullwidth">
                             Login
                             </button>
                         </p>
@@ -75,5 +75,12 @@ const onSubmit = async () =>{
 </script>
 
 <style scoped>
-    form{max-width: 500px;}
+    form{
+        max-width: 550px;
+        background: white;
+        padding: 30px;
+        margin: 0 auto;
+        border-radius: 10px;
+        box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+    }
 </style>

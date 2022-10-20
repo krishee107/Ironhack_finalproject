@@ -5,7 +5,7 @@
 /*Normal*/
 :root,
 :root.normal{
-    --body-bg: #f4eded59;
+    --body-bg: #fcfcfc;
 }
 /* Modo oscuro */
 :root.dark-mode{
@@ -33,11 +33,18 @@
   }
 
 /* General */
-*{
+*{    
+    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: var(--color);
     transition: 300ms;
 }
 html, body {
     height: 100vh;
     background: var(--body-bg);
+}
+
+/*Forms */
+
+input::placeholder{    
+    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
