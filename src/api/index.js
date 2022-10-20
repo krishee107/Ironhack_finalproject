@@ -29,14 +29,6 @@ export const login = async (email, password) =>{
     return false
 }
 
-/*
-task{
-      user_id: id,
-      title: 'Titulo',
-      description: 'Descripción del task'
-}
-*/
-
 export const newTask = async (task) =>{
     const response = await supabase.from('task')
     .insert({
@@ -45,7 +37,7 @@ export const newTask = async (task) =>{
       description: task.description
     })
 
-    //                             ---                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  todo identificar el return y retornar lo que nos interese
+    // 201 = insertado con éxito                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              todo identificar el return y retornar lo que nos interese
     if(response.status == 201) return true;
     return false;
   }

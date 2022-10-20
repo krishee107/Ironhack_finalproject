@@ -13,7 +13,6 @@ export const useTaskStore = defineStore('task', {
     actions: {
         async getTask() {
              this.tasks =  await getTasks();
-             console.log(this.tasks)
              return this.tasks;
         },
         resetTask(){

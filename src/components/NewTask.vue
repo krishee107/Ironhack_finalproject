@@ -34,11 +34,9 @@ const onSubmit = async ()=>{
     let task = {
         user_id: authStore.id,
         title: title.value,
-        description: description.value,
-        status: 'activa'
+        description: description.value
     }
     const status = await newTask(task).then((res)=>{
-        console.log(res)
         taskStore.addTask();
     })
 }
