@@ -1,7 +1,6 @@
 <template>
-    <div class="section">
-        <div class="container">
-            <form @submit.prevent="onSubmit">
+    <div class="container">
+        <form @submit.prevent="onSubmit">
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
                         <input class="input is-large is-rounded" v-model="title" type="text" placeholder="¿Cómo quieres llamar a la tarea?" required v-on:keyup.enter="onSubmit">
@@ -21,8 +20,8 @@
                 </div>
 
             </form>
-        </div>
     </div>
+
 
 </template>
 
