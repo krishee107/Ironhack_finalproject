@@ -20,10 +20,14 @@
             <div class="navbar-end">
               <!-- Dark mode -->
               <div class="select mr-4">
-                <select>
-                  <option>Bubbles</option>
-                  <option>Dark mode</option>
-                  <option>Pink mode</option>
+                <select v-model="userTheme" @change="authStore.setTheme(userTheme)">
+                  <option value="undefined" hidden disabled>{{authStore.getTheme()}}</option>
+                  <option value="normal">Normal</option>
+                  <option value="postit">Post it</option>
+                  <option value="sky">Sky</option>
+                  <option value="bubbles">Bubbles</option>
+                  <option value="dark-mode">Dark mode</option>
+                  <option value="pink-mode">Pink mode</option>
                 </select>
               </div>
               <!-- Perfil -->
@@ -46,10 +50,17 @@
     </template>
 
     <script setup>
-    import {useTaskStore, useAuthStore} from '../store/index'
-    import {ref} from 'vue'
-
+    import {useAuthStore} from '../store/index'
+    import { onMounted, ref } from 'vue';
+    
+    
+    //const theme = ref();
     const authStore = useAuthStore();
+    
+    onMounted( ()=>{
+      document.documentElement.className = authStore.theme;
+    })
+
     </script>
 
     <style scoped>

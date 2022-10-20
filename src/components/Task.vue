@@ -14,12 +14,12 @@
                                 <div class="todo-description" contenteditable @blur="updateContent($event, 'description', task)">{{task.description}} </div>
                                 <div class="todo-date">{{moment(String(task.created_at)).format('DD/MM/YYYY - hh:mm')}} </div>
                             </div>
-                            <div class="buttons columns has-text-centered" v-if="task.status == 'activa'" >
+                            <div class="task-buttons buttons columns has-text-centered" v-if="task.status == 'activa'" >
                                 <i  @click="cambiarEstadoTarea(task.id, task)" class="column fa-regular fa-square-check"></i>
                                 <i  @click="borrarTarea(task.id)" class="column fa-regular fa-trash-can"></i>
                             </div>
                             <div v-else>
-                                <div class="buttons columns has-text-centered">
+                                <div class="task-buttons buttons columns has-text-centered">
                                     <i @click="cambiarEstadoTarea(task.id, task)"  class="column fa-solid fa-arrow-rotate-right"></i>
                                     <i  @click="borrarTarea(task.id)" class="column fa-regular fa-trash-can"></i>
                                 </div>
@@ -43,7 +43,7 @@ import moment from 'moment'
 
 const taskStore = useTaskStore();
 let task ; 
-//taskStore.resetTask();
+
 onMounted(async () =>{
     if(taskStore.tasks.length == 0){
         task = await getTasks();
@@ -82,7 +82,7 @@ const cambiarEstadoTarea = async(id, task) =>{
 </script>
 
 <style scoped>
-
+.card{height: 100%;}
 i{
     cursor:  pointer;
     font-size: 20px;
