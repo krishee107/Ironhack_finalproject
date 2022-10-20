@@ -3,14 +3,21 @@
         <div class="container">
             <form @submit.prevent="onSubmit">
                 <div class="field">
-                    <div class="control is-large is-loading">
-                        <input class="input is-large" v-model="title" type="text" placeholder="Introduce el TITULO de la nueva tarea..." required v-on:keyup.enter="onSubmit">
-                    </div>
+                    <p class="control has-icons-left has-icons-right">
+                        <input class="input is-large is-rounded" v-model="title" type="text" placeholder="¿Cómo quieres llamar a la tarea?" required v-on:keyup.enter="onSubmit">
+                        <span class="icon is-small is-right">
+                            <i class="fa-solid fa-pencil"></i>
+                        </span>
+                    </p>
                 </div>
+
                 <div class="field" v-if="title.length > 0">
-                    <div class="control is-large">
-                        <input class="input is-large" v-model="description" type="text" placeholder="Introduce la  descripción de la nueva tarea..." required  v-on:keyup.enter="onSubmit">
-                    </div>
+                    <p class="control has-icons-left has-icons-right">
+                        <input class="input is-large is-rounded" v-model="description" type="text" placeholder="¿Qué necesitas hacer?" required  v-on:keyup.enter="onSubmit">
+                        <span class="icon is-small is-right">
+                        <i class="fas fa-check"></i>
+                        </span>
+                    </p>
                 </div>
 
             </form>
@@ -46,7 +53,8 @@ const onSubmit = async ()=>{
 
 <style scoped>
 form{
-    max-width: 90%;
+    max-width: 700px;
     margin: 0 auto;
 }
+input{box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);}
 </style>

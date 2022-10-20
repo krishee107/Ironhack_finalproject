@@ -71,7 +71,7 @@
 
     <script setup>
     import {useAuthStore} from '../store/index'
-    import { onMounted, ref } from 'vue';
+    import { onMounted } from 'vue';
     
     
     //const theme = ref();
