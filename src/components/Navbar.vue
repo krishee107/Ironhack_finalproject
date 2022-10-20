@@ -34,7 +34,7 @@
                   <span class="icon">
                     <i class="fa-regular fa-clipboard"></i>
                   </span>
-                  <span>Record</span>
+                  <span>Historic</span>
                 </router-link>
             </div>
             <div class="navbar-end">
