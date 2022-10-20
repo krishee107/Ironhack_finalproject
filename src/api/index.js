@@ -58,15 +58,15 @@ export const getTasks = async () =>{
       description: 'Descripción modificada',
     }*/
 
-export const updateTask = async (taskId, task)=>{
+export const updateTask = async (id, task)=>{
     const response = await supabase
     .from('task')
     .update(task)
-    .eq('id', taskId)
+    .eq('id', id)
     
     //todo identificar el return y retornar lo que nos interese
-    //if(response) return true;
-    //return false;
+    if(response) return true;
+    return false;
 }
 
 export const deleteTask = async(taskId)=>{

@@ -5,13 +5,13 @@
 
                 <div class="column is-4-desktop is-4-tablet is-6-mobile" :class="task.status" v-for="task in taskStore.tasks">
                     <div class="card">
-                        <header class="card-header card-header-title">
+                        <header class="card-header card-header-title"  contenteditable @blur="updateContent($event, 'title', task)">
                             {{task.title}}
                         </header>
 
                         <div class="card-content">
                             <div class="content">
-                                <div class="todo-description">{{task.description}} </div>
+                                <div class="todo-description" contenteditable @blur="updateContent($event, 'description', task)">{{task.description}} </div>
                                 <div class="todo-date">{{moment(String(task.created_at)).format('DD/MM/YYYY - hh:mm')}} </div>
                             </div>
                             <div class="buttons columns has-text-centered" v-if="task.status == 'activa'" >
@@ -51,6 +51,17 @@ onMounted(async () =>{
         taskStore.tasks = task;
     }
 })
+
+const updateContent = async (e, type, task) =>{
+    if(type == 'title')
+        task.title = e.target.innerText;
+    else if(type== 'description') task.description = e.target.innerText;
+    else return false;
+
+    const status = await updateTask(task.id, task).then((res) =>{
+        taskStore.updateTask(task.id, task);
+    })
+}
 
 const borrarTarea = async (id) =>{
     const status = await deleteTask(id).then(() =>{
