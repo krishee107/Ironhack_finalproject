@@ -15,7 +15,27 @@
     
       <div class="navbar-menu" v-if="authStore.isAuth">
             <div class="navbar-start">
-                <router-link class="navbar-item button is-link is-outlined" :to="{name: 'home'}">Home</router-link>
+              
+                <router-link class="navbar-item button is-outlined ml-4" :to="{name: 'home'}">
+                  <span class="icon">
+                    <i class="fa-solid fa-house-chimney"></i>
+                  </span>
+                  <span>Home</span>
+                </router-link>
+
+                <router-link class="navbar-item button is-outlined ml-4" :to="{name: 'home'}">
+                  <span class="icon">
+                    <i class="fa-regular fa-folder"></i>
+                  </span>
+                  <span>Archived</span>
+                </router-link>
+
+                <router-link class="navbar-item button is-outlined ml-4" :to="{name: 'home'}">
+                  <span class="icon">
+                    <i class="fa-regular fa-clipboard"></i>
+                  </span>
+                  <span>Record</span>
+                </router-link>
             </div>
             <div class="navbar-end">
               <!-- Dark mode -->
@@ -31,7 +51,7 @@
                 </select>
               </div>
               <!-- Perfil -->
-                <router-link class="navbar-item button is-link is-outlined mr-4" :to="{name: 'home'}">Perfil</router-link>
+                <router-link class="navbar-item button is-link is-light  mr-4" :to="{name: 'home'}">Perfil</router-link>
                 <!-- Logout-->
                 <button class="navbar-item button is-danger is-light " @click="authStore.logout()">Logout</button>            
             </div>
@@ -63,5 +83,6 @@
 
     </script>
 
-    <style scoped>
+    <style scoped>  
+    .button{min-width: 80px;}
     </style>
