@@ -1,31 +1,43 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css";
 
+/* ---- Temas ---- */
+/*Normal*/
 :root,
 :root.normal{
     --body-bg: #f4eded59;
 }
+/* Modo oscuro */
 :root.dark-mode{
     --body-bg:black;
 }
+ /* "Post it" */
 :root.postit{
     --body-bg:brown;
 }
+
+/* Modo nubes */
 :root.sky{
     --body-bg:lightblue;
 }
+
+/* Modo burbujas */
 :root.bubbles{
     --body-bg:rgb(21, 106, 135);
 }
+
+/* Modo rosa */
 :root.pink-mode{
     --body-bg:#ffcad4;
     --color:#e75480;
   }
 
+/* General */
 *{
     color: var(--color);
     transition: 300ms;
 }
-body{
-    background-color: var(--body-bg);
-  }
+html, body {
+    height: 100vh;
+    background: var(--body-bg);
+}
