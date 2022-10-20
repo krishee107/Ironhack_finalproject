@@ -7,7 +7,8 @@ export const useTaskStore = defineStore('task', {
         return {
             // all these properties will have their type inferred automatically
             // Guardaremos los task que nos de supabase
-            tasks: []
+            tasks: [],
+            filter: 'all'
         }
     },
     actions: {
@@ -41,6 +42,18 @@ export const useTaskStore = defineStore('task', {
             this.resetTask();
             //Añadimos todos de nuevo
             this.getTask();
+        },
+        async filterTask(filter){
+            //Cambiamos el filtro
+            this.filter=filter;
+            //Reseteamos y cargamos todas las tareas independientemente del filtro 
+            await this.resetTask();
+            await this.getTask();
+            //Si quiere algo que no sea "all", filtramos
+            if(filter != "all"){
+                this.tasks= this.tasks.filter(task => task.status == filter);
+            }
+
         }
 
 
