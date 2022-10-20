@@ -4,7 +4,7 @@
             <form @submit.prevent="onSubmit">
                 <div class="field">
                     <div class="control is-large is-loading">
-                        <input class="input is-large" v-model="title" type="text" placeholder="Introduce el TITULO de la nueva tarea..." required>
+                        <input class="input is-large" v-model="title" type="text" placeholder="Introduce el TITULO de la nueva tarea..." required v-on:keyup.enter="onSubmit">
                     </div>
                 </div>
                 <div class="field" v-if="title.length > 0">
