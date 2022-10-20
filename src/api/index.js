@@ -47,6 +47,7 @@ export const getTasks = async () =>{
     .from('task')
     .select('*')
     .order('status', {ascending: true})
+    .order( 'id',  {ascending: false})
   
    if(response) return response.data;
    else return false
