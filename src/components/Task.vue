@@ -16,7 +16,6 @@
                             </div>
                             <div class="buttons columns has-text-centered" v-if="task.status == 'activa'" >
                                 <i  @click="cambiarEstadoTarea(task.id, task)" class="column fa-regular fa-square-check"></i>
-                                <i class="column fa-regular fa-pen-to-square"></i>
                                 <i  @click="borrarTarea(task.id)" class="column fa-regular fa-trash-can"></i>
                             </div>
                             <div v-else>

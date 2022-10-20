@@ -46,7 +46,7 @@ export const getTasks = async () =>{
     const response = await supabase
     .from('task')
     .select('*')
-    .order('id', {ascending: false})
+    .order('status', {ascending: true})
   
    if(response) return response.data;
    else return false
