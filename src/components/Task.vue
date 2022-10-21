@@ -2,7 +2,7 @@
         <div class="container">
             <div class="cards columns is-multiline " >
 
-                <div class="column is-4-desktop is-4-tablet is-6-mobile" :class="task.status" v-for="task in taskStore.tasks">
+                <div class="column is-4-desktop is-6-tablet is-6-tablet" :class="task.status" v-for="task in taskStore.tasks">
                     <!-- Inicio de la card -->
                     <div class="card">
                         <!-- Cabecera -->
@@ -12,8 +12,8 @@
                             <!-- Botones -->
                                 <!--Para fichas activas-->
                                 <div class="navbar-item has-dropdown is-hoverable" >
-                                    <a class="navbar-link"></a>
-                                    <div class="navbar-dropdown"  v-if="task.status == 'activa'">
+                                    <a class="navbar-link"  @click="isHovering = !isHovering && size <= 1023"></a>
+                                    <div class="navbar-dropdown" :class="{'is-active': isHovering}"  v-if="task.status == 'activa'">
                                         <a class="navbar-item" @click="cambiarEstadoTarea(task.id, task)">
                                             <span class="icon pr-2"><i class="fa-regular fa-square-check"></i></span>
                                             <span>Complete job</span> 
@@ -72,9 +72,10 @@ import {useTaskStore} from '../store/index'
 import {deleteTask, getTasks, updateTask} from '../api/index'
 import { onMounted, ref } from 'vue';
 import moment from 'moment'
-
+let size = ref(screen.width)
 const taskStore = useTaskStore();
 let task ; 
+let isHovering = ref(false);
 
 onMounted(async () =>{
     if(taskStore.tasks.length == 0){
@@ -153,5 +154,14 @@ i:hover{
 .completada .card-title, .completada .todo-description{
     text-decoration: line-through;
     color: var(--task-complete-color) !important;
+}
+
+@media screen and (max-width: 1024px) {
+    .navbar-dropdown{display: none;}
+    .is-active{    
+        display: block !important;
+        background: white;
+        border-radius: 20px;
+    }
 }
 </style>
