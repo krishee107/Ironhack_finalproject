@@ -57,12 +57,14 @@
 /* Modo rosa */
 :root.pink-mode{
     --body-bg: -webkit-radial-gradient(top left, #FEFEFE, #ffaaeb);
+    /*Navbar*/
+    --nav-color:#bc1fd8;
+    --theme-picker-color:#bc1fd8;
     /*Filters*/
     --filter-color: #a09f9f;
     /*Task - Active*/
-    --task-title:#bb00ff;
-    --task-bg: #ffe8f7;
-    --task-color: #bb00ff;
+    --task-title:#ee6fb5;
+    --task-color: #e053e4;
     --task-hour: #bb00ff;
     /*Task - Complete*/
     --task-complete-bg: #daefff;
