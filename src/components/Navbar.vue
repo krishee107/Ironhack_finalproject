@@ -53,7 +53,7 @@
               <!-- Perfil -->
                 <router-link class="navbar-item button  is-link is-light  mr-4 profile" :to="{name: 'perfil'}">Profile</router-link>
                 <!-- Logout-->
-                <button class="navbar-item button  is-danger is-light  logout" @click="authStore.logout()">Logout</button>            
+                <button class="navbar-item button  is-danger is-light  logout" @click="logout()">Logout</button>            
             </div>
       </div>
       <div id="navbarBasicExample " class="navbar-menu" v-else>
@@ -70,18 +70,23 @@
     </template>
 
     <script setup>
-    import {useAuthStore, useThemeStore} from '../store/index'
+    import {useAuthStore, useTaskStore, useThemeStore} from '../store/index'
     import { onMounted } from 'vue';
     
     
     //const theme = ref();
     const themeStore = useThemeStore();
     const authStore = useAuthStore();
-    
+    const taskStore = useTaskStore();
+
     onMounted( ()=>{
       document.documentElement.className =themeStore.theme;
     })
 
+    const logout = () =>{
+      taskStore.resetTask();
+      authStore.logout();
+    }
     </script>
 
     <style scoped>  

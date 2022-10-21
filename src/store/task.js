@@ -14,11 +14,14 @@ export const useTaskStore = defineStore('task', {
     },
     actions: {
         async getTask() {
+            this.resetTask();
              this.tasks =  await getTasks();
              return this.tasks;
         },
         resetTask(){
             this.tasks = [];
+            this.archivedTask = [];
+            this.filter = 'all';
             return true;
         },
         setTask() {

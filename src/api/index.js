@@ -1,22 +1,33 @@
 import { createClient } from '@supabase/supabase-js'
 
-
+let user_id;
 const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY);
 
 export const register = async (email, password) =>{
     const response = await supabase.auth.signUp({
           email,
           password
-        })
-    //todo identificar el return y retornar lo que nos interese
-    if(response.error == null) return response;
+        })   
+    
+    if(response.error == null){
+      user_id = response.data.user.id;
+      return response;
+    } 
     else if(response.error == 422){
       //422 - la contraseña tiene que tener +6 caracteres
       console.log("La contraseña tiene que ser mayor de 6 caracteres");
       return false
     }
-    //429"For security purposes, you can only request this after 60 seconds."
-    console.log(response)
+    else if(response.error == 429){
+      //429"For security purposes, you can only request this after 60 seconds."
+      console.log("For security purposes, you can only request this after 60 seconds");
+      return false
+    }else if(response.error == 500){
+      console.log("Ya existe un usuario con ese correo o tiene un correo no permitido")
+      return false;
+    }
+    else
+      console.log(response.error)
   }
 
 export const login = async (email, password) =>{
@@ -24,8 +35,10 @@ export const login = async (email, password) =>{
           email,
           password
     })
-    if(response)
-      return response.data.user.id
+    if(response){
+      user_id = response.data.user.id;
+      return response;
+    }
     return false
 }
 
@@ -48,6 +61,7 @@ export const newTask = async (task) =>{
     .select('*')
     .order('status', {ascending: true})
     .order( 'id',  {ascending: false})
+    .eq('user_id', user_id)
   
    if(response) return response.data;
    else return false

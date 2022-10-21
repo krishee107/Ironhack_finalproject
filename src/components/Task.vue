@@ -80,7 +80,7 @@ const size = ref(screen.width);
 let task ; 
 
 onMounted(async () =>{
-    if(taskStore.tasks.length == 0){
+    if(taskStore.tasks == null ){
         task = await getTasks();
         taskStore.tasks = task;
     }

@@ -10,6 +10,7 @@
 <script setup>
 import ArchivedTask from '../components/ArchivedTask.vue';
 import {useTaskStore} from '../store/index';
+import {getArchivedTasks} from '../api/index'
 import { onMounted, ref } from 'vue';
 
 const taskStore = useTaskStore();
