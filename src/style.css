@@ -6,7 +6,7 @@
 :root,
 :root.normal{
     /*General*/
-    --body-bg: #fcfcfc;
+    --body-bg: linear-gradient(0deg, #ffffff 0%, #fcfcfc 100%);
     /*NewTask*/
     --newtask-bg:white;
     --newtask-color: #a09f9f;
@@ -78,6 +78,27 @@
 /* Modo nubes */
 :root.sky{
     --body-bg: url('./assets/sky-background.jpg');
+}
+/* Modo Cyber */
+:root.cyberpunk{
+    --body-bg: url('./assets/future-background.gif');
+    /*NewTask*/
+    --newtask-bg:#091665;
+    --newtask-color: #01c8ff;
+    /*Filters*/
+    --filter-bg:#9b0091 ;
+    --filter-color: #d3b3f4;
+    /*Task - Active*/
+    --task-title:#d3b3f4;
+    --task-bg:  linear-gradient(43deg, #091665 0%, #9b0091 46%, #b42dc0 100%);
+    --task-color: #d3b3f4;
+    --task-hour: #01c8ff;
+    /*Task - Complete*/
+    --task-complete-bg:linear-gradient(43deg, #091665 0%, #551651 46%, #240227 100%);
+    
+    --task-complete-border:none;
+    --task-complete-color:#686e94;
+    
 }
 
 

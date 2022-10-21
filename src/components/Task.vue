@@ -122,7 +122,7 @@ const cambiarEstadoTarea = async(id, task) =>{
 <style scoped>
 .card{
     display: grid;
-    background-color: var(--task-bg);
+    background: var(--task-bg);
     height: var(--task-minheight);
     grid-template-rows: min-content auto auto;
 }
