@@ -56,7 +56,7 @@
 }
 /* Modo rosa */
 :root.pink-mode{
-    --body-bg: -webkit-radial-gradient(top left, #FEFEFE, #ffaaeb);
+    --body-bg: url('./assets/pink-background.jpg');
     /*Navbar*/
     --nav-color:#bc1fd8;
     --theme-picker-color:#bc1fd8;
