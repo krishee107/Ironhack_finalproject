@@ -24,6 +24,21 @@ const routes = [
     path: '/registro',
     name: 'registro',
     component: () => import ('../Views/Registro.vue')
+  },
+  {
+    path: '/archivadas',
+    name: 'archivadas',
+    component: () => import ('../Views/Archivadas.vue')
+  },
+  {
+    path: '/perfil',
+    name: 'perfil',
+    component: () => import ('../Views/Perfil.vue')
+  },
+  {
+    path: '/historial',
+    name: 'historial',
+    component: () => import ('../Views/Historial.vue')
   }
  // { path: '/about', component: () => import ('../components/Views/About.vue') },
 ]

@@ -23,14 +23,14 @@
                   <span>Home</span>
                 </router-link>
 
-                <router-link class="navbar-item ml-4" :to="{name: 'home'}">
+                <router-link class="navbar-item ml-4" :to="{name: 'archivadas'}">
                   <span class="icon">
                     <i class="fa-regular fa-folder"></i>
                   </span>
                   <span>Archived</span>
                 </router-link>
 
-                <router-link class="navbar-item  ml-4" :to="{name: 'home'}">
+                <router-link class="navbar-item  ml-4" :to="{name: 'historial'}">
                   <span class="icon">
                     <i class="fa-regular fa-clipboard"></i>
                   </span>
@@ -51,7 +51,7 @@
                 </select>
               </div>
               <!-- Perfil -->
-                <router-link class="navbar-item button  is-link is-light  mr-4 profile" :to="{name: 'home'}">Profile</router-link>
+                <router-link class="navbar-item button  is-link is-light  mr-4 profile" :to="{name: 'perfil'}">Profile</router-link>
                 <!-- Logout-->
                 <button class="navbar-item button  is-danger is-light  logout" @click="authStore.logout()">Logout</button>            
             </div>
