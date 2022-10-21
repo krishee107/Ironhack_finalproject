@@ -55,8 +55,12 @@ const onSubmit = async () =>{
 </script>
 
 <style scoped>
-form{
-    margin: 0 auto;
-    max-width: 500px;
-}
+    form{
+        max-width: 550px;
+        background: white;
+        padding: 30px;
+        margin: 0 auto;
+        border-radius: 10px;
+        box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+    }
 </style>
