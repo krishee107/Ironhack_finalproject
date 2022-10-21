@@ -17,7 +17,7 @@
                                             <span class="icon pr-2"><i class="fa-regular fa-square-check"></i></span>
                                             <span>Complete job</span> 
                                         </a>
-                                        <a class="navbar-item">
+                                        <a class="navbar-item" @click="archivar(task.id, task)">
                                             <span class="icon pr-2"><i class="fa-regular fa-folder"></i></span>
                                             <span>Archive job</span> 
                                         </a>
@@ -33,7 +33,7 @@
                                             <span class="icon pr-2"><i class="fa-solid fa-arrow-rotate-right"></i></span>
                                             <span>Re do job</span> 
                                         </a>
-                                        <a class="navbar-item">
+                                        <a class="navbar-item" @click="archivar(task.id, task)">
                                             <span class="icon pr-2"><i class="fa-regular fa-folder"></i></span>
                                             <span>Archive job</span> 
                                         </a>
@@ -71,12 +71,11 @@
 </template>
 
 <script setup>
-import {useTaskStore,useThemeStore} from '../store/index'
+import {useTaskStore} from '../store/index'
 import {deleteTask, getTasks, updateTask} from '../api/index'
-import { onMounted, ref, onUpdated } from 'vue';
+import { onMounted, ref } from 'vue';
 import moment from 'moment'
 const taskStore = useTaskStore();
-const themeStore =useThemeStore();
 const size = ref(screen.width);
 let task ; 
 
@@ -102,6 +101,16 @@ const borrarTarea = async (id) =>{
     const status = await deleteTask(id).then(() =>{
         taskStore.deleteTask(id);
     });
+}
+
+const archivar = async(id, task) =>{
+    task.status = "archivada";
+    const status = await updateTask(id, task).then((res) =>{
+        //Borramos la tarea del array 
+        taskStore.deleteTask(id);
+        //La añadimos al array de archivadas
+        taskStore.archiveTask(task);
+    })
 }
 
 const cambiarEstadoTarea = async(id, task) =>{

@@ -8,6 +8,7 @@ export const useTaskStore = defineStore('task', {
             // all these properties will have their type inferred automatically
             // Guardaremos los task que nos de supabase
             tasks: [],
+            archivedTask: [],
             filter: 'all'
         }
     },
@@ -54,6 +55,10 @@ export const useTaskStore = defineStore('task', {
                 this.tasks= this.tasks.filter(task => task.status == filter);
             }
 
+        },
+        archiveTask(task){
+            this.archivedTask.push(task)
+            return true;
         }
 
 
