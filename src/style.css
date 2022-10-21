@@ -24,17 +24,17 @@
 }
 /* Modo oscuro */
 :root.dark-mode{
-    --body-bg:#130f25;
+    --body-bg: linear-gradient(60deg, #130f25 0%, #550852 100%);
+    ;
     /*NewTask*/
-    --newtask-bg:#1d1734;
+    --newtask-bg:#221b41;
     --newtask-color: white;
     /*Filters*/
-    --filter-bg:#382f60;
+    --filter-bg:#550852;
     --filter-color: white;
-    /*Task - Active*/ 
-    --task-minheight: unset;
+    /*Task - Active*/
     --task-title:#4b81ab;
-    --task-bg: #382f60;
+    --task-bg: #221b41;
     --task-color: #686e94;
     --task-hour: #a45fbe;
     /*Task - Complete*/
