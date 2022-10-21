@@ -51,7 +51,7 @@
                 </select>
               </div>
               <!-- Perfil -->
-                <router-link class="navbar-item button is-link is-light  mr-4" :to="{name: 'home'}">Perfil</router-link>
+                <router-link class="navbar-item button is-link is-light  mr-4" :to="{name: 'home'}">Profile</router-link>
                 <!-- Logout-->
                 <button class="navbar-item button is-danger is-light " @click="authStore.logout()">Logout</button>            
             </div>

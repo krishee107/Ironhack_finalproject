@@ -23,7 +23,6 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
 import {useAuthStore} from '../store/index'
 import TaskList from '../components/TaskList.vue';
 import NewTask from '../components/NewTask.vue';
