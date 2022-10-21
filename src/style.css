@@ -76,7 +76,7 @@
 
 /* Modo nubes */
 :root.sky{
-    --body-bg:lightblue;
+    --body-bg: url('./assets/sky-background.jpg');
 }
 
 /* Modo burbujas */
