@@ -14,8 +14,7 @@ export const useTaskStore = defineStore('task', {
     },
     actions: {
         async getTask() {
-            this.resetTask();
-             this.tasks =  await getTasks();
+             //this.tasks =  await getTasks();
              return this.tasks;
         },
         resetTask(){
@@ -50,9 +49,6 @@ export const useTaskStore = defineStore('task', {
         async filterTask(filter){
             //Cambiamos el filtro
             this.filter=filter;
-            //Reseteamos y cargamos todas las tareas independientemente del filtro 
-            await this.resetTask();
-            await this.getTask();
             //Si quiere algo que no sea "all", filtramos
             if(filter != "all"){
                 this.tasks= this.tasks.filter(task => task.status == filter);

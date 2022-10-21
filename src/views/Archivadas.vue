@@ -19,7 +19,7 @@ let archivadas;
 
 onMounted(async () =>{
     if(taskStore.archivedTask == null || taskStore.archivedTask.length == 0){
-        archivadas = await getArchivedTasks();
+        archivadas = await getArchivedTasks(authStore.id);
         taskStore.archivedTask = archivadas;
     }
 })

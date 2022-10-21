@@ -50,7 +50,7 @@ const onSubmit = async () =>{
         let id = status.data.user.id
         const login = await authStore.login(id, email.value)
         if(login){
-            await taskStore.getTask().then( () =>{
+            taskStore.tasks = await getTasks(id).then( (tasks) =>{
                 router.replace({ path: '/' })
            })
         }

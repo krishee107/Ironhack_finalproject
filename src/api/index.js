@@ -37,7 +37,7 @@ export const login = async (email, password) =>{
     })
     if(response){
       user_id = response.data.user.id;
-      return response;
+      return user_id;
     }
     return false
 }
@@ -55,7 +55,7 @@ export const newTask = async (task) =>{
     return false;
   }
 
-  export const getTasks = async () =>{
+  export const getTasks = async (user_id) =>{
     const response = await supabase
     .from('task')
     .select('*')
@@ -67,13 +67,13 @@ export const newTask = async (task) =>{
    else return false
 }
 
-export const getArchivedTasks = async () =>{
+export const getArchivedTasks = async (user_id) =>{
   const response = await supabase
   .from('task')
   .select('*') 
   .order( 'id',  {ascending: false})
   .eq('status', 'archivada')
-  .eq('user_id', user_id)
+    .eq('user_id', user_id)
 
  if(response) return response.data;
  else return false

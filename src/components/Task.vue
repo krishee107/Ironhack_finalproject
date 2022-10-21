@@ -71,17 +71,18 @@
 </template>
 
 <script setup>
-import {useTaskStore} from '../store/index'
+import {useAuthStore, useTaskStore} from '../store/index'
 import {deleteTask, getTasks, updateTask} from '../api/index'
 import { onMounted, ref } from 'vue';
 import moment from 'moment'
 const taskStore = useTaskStore();
+const authStore = useAuthStore();
 const size = ref(screen.width);
 let task ; 
 
 onMounted(async () =>{
-    if(taskStore.tasks == null ){
-        task = await getTasks();
+    if(taskStore.tasks == null || taskStore.tasks.length == 0){
+        task = await getTasks(authStore.id);
         taskStore.tasks = task;
     }
 })

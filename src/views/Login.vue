@@ -57,7 +57,7 @@
 import {ref} from 'vue'
 import router from '../router'
 import {useAuthStore, useTaskStore} from '../store/index'
-import {login} from '../api/index'
+import {getTasks, login} from '../api/index'
 
 const authStore = useAuthStore();
 
@@ -68,10 +68,9 @@ const taskStore = useTaskStore();
 const onSubmit = async () =>{
         const status = await login(email.value, password.value);
         if(status != null && status != false){
-            let id = status.data.user.id
-            const login = authStore.login(id, email.value);
+            const login = authStore.login(status, email.value);
             if(login){
-                await taskStore.getTask().then( () =>{
+                taskStore.tasks = await getTasks(status).then( (tasks) =>{
                     router.replace({ path: '/' })
                 })
             }

@@ -11,11 +11,14 @@
 </template>
 
 <script setup>
-import {useTaskStore} from '../store/index'
+import {useAuthStore, useTaskStore} from '../store/index'
+import { getTasks} from '../api'
 
 const taskStore = useTaskStore();
+const authStore = useAuthStore();
 
-const changeFilter = (filter) =>{
+const changeFilter = async (filter) =>{
+    taskStore.tasks = await getTasks(authStore.id);
     taskStore.filterTask(filter);
 };
 
