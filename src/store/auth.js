@@ -10,7 +10,7 @@ export const useAuthStore = defineStore('auth', {
             // Guardaremos el id de supabase que nos dara al hacer el login
             id: undefined,
             email: '',
-            theme: 'normal'
+
         }
     },
     actions: {
@@ -27,13 +27,7 @@ export const useAuthStore = defineStore('auth', {
             this.isAuth=false;
             return true;
         },
-        setTheme(theme){
-            this.theme = theme;
-            document.documentElement.className = this.theme;
-        },
-        getTheme(){
-            return this.theme;
-        }
+        
     },
     persist: {
       enabled: true

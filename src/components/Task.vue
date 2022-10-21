@@ -71,11 +71,12 @@
 </template>
 
 <script setup>
-import {useTaskStore} from '../store/index'
+import {useTaskStore, useAuthStore} from '../store/index'
 import {deleteTask, getTasks, updateTask} from '../api/index'
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, onUpdated } from 'vue';
 import moment from 'moment'
 const taskStore = useTaskStore();
+const authStore = useAuthStore();
 const size = ref(screen.width);
 let task ; 
 
@@ -84,6 +85,8 @@ onMounted(async () =>{
         task = await getTasks();
         taskStore.tasks = task;
     }
+    if(authStore.theme == "postit")
+        console.log("YES")
 })
 
 const updateContent = async (e, type, task) =>{
@@ -122,6 +125,8 @@ const cambiarEstadoTarea = async(id, task) =>{
 .card{
     display: grid;
     background-color: var(--task-bg);
+    height: var(--task-minheight);
+    grid-template-rows: min-content auto auto;
 }
 
 i:hover{
@@ -137,6 +142,7 @@ i:hover{
     color: var(--task-title);
     text-transform: capitalize;
 }
+.card-header{height: fit-content;}
 .todo-description {
     max-height: 200px;
     overflow: auto;
@@ -158,12 +164,4 @@ i:hover{
     color: var(--task-complete-color) !important;
 }
 
-@media screen and (max-width: 1024px) {
-    .navbar-dropdown{display: none;}
-    .is-active{    
-        display: block !important;
-        background: white;
-        border-radius: 20px;
-    }
-}
 </style>

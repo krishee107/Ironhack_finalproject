@@ -31,7 +31,8 @@
     /*Filters*/
     --filter-bg:#382f60;
     --filter-color: white;
-    /*Task - Active*/
+    /*Task - Active*/ 
+    --task-minheight: unset;
     --task-title:#4b81ab;
     --task-bg: #382f60;
     --task-color: #686e94;
@@ -60,7 +61,15 @@
 }
  /* "Post it" */
 :root.postit{
-    --body-bg:brown;
+    --body-bg: url('./assets/postit-background.jpg');
+    --task-minheight: 300px;
+    /*Filters*/
+    --filter-bg:#00bbff;
+    --filter-color: white;
+    /*Task - Complete*/
+    --task-complete-bg: #b1aeae;
+    --task-complete-border:solid 1px rgb(151, 151, 151);
+    --task-complete-color:#5c5d60;
 }
 
 /* Modo nubes */
@@ -83,6 +92,7 @@
 html, body {
     height: 100vh;
     background: var(--body-bg);
+    background-size: contain;
 }
 
 /*Forms */
