@@ -54,8 +54,11 @@
                         <div class="card-content">
                             <div class="content">
                                 <div class="todo-description" contenteditable @blur="updateContent($event, 'description', task)">{{task.description}} </div>
-                                <div class="todo-date">{{moment(String(task.created_at)).format('DD/MM/YYYY - hh:mm')}} </div>
                             </div>
+                        </div>
+                        <!-- Footer -->
+                        <div class="task-footer is-flex is-align-items-end is-justify-content-end">
+                            <time class=" is-family-monospace is-fullwidth pr-2" :datetime="moment(String(task.created_at)).format('YYYY/DD/MM')">{{moment(String(task.created_at)).format('hh:mm A - DD/MM/YYYY')}} </time>
                         </div>
                     </div>
                     <!---->
@@ -116,7 +119,7 @@ const cambiarEstadoTarea = async(id, task) =>{
 </script>
 
 <style scoped>
-.card{height: 100%;}
+.card{display: grid;}
 
 i:hover{
     cursor:  pointer;
@@ -131,10 +134,16 @@ i:hover{
     color: var(--title-color);
     text-transform: capitalize;
 }
-.button-task{display: block !important;}
+.todo-description {
+    max-height: 200px;
+    overflow: auto;
+    word-break: break-word;
+}
+.task-footer time{font-size: 10px;}
 /* Tareas completadas */
 .completada .card {
     background: #efefef;
     border: solid 1px lightgray;
 }
+.completada .card-title, .completada .todo-description{text-decoration: line-through;}
 </style>
