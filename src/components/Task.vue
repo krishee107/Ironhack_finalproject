@@ -1,5 +1,4 @@
 <template>
-    <div class="section">
         <div class="container">
             <div class="cards columns is-multiline " >
 
@@ -66,8 +65,6 @@
 
             </div>
         </div>
-    </div>
-
 </template>
 
 <script setup>
