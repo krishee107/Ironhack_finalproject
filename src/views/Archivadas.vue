@@ -2,7 +2,7 @@
     <div class="section">
         <div class="container">
             <div class="cards columns is-multiline " >
-            <ArchivedTask v-for="task in archivadas" :task="task"/>
+                <ArchivedTask v-for="task in taskStore.archivedTask" :task="task"/>
             </div>
         </div>
     </div>
@@ -14,10 +14,11 @@ import {getArchivedTasks} from '../api/index'
 import { onMounted, ref } from 'vue';
 
 const taskStore = useTaskStore();
-let archivadas = ref(taskStore.archivedTask);
+let archivadas;
+
 
 onMounted(async () =>{
-    if(taskStore.archivedTask.length == 0){
+    if(taskStore.archivedTask == null || taskStore.archivedTask.length == 0){
         archivadas = await getArchivedTasks();
         taskStore.archivedTask = archivadas;
     }

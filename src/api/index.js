@@ -73,6 +73,7 @@ export const getArchivedTasks = async () =>{
   .select('*') 
   .order( 'id',  {ascending: false})
   .eq('status', 'archivada')
+  .eq('user_id', user_id)
 
  if(response) return response.data;
  else return false
