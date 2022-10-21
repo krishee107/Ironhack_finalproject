@@ -59,8 +59,8 @@
       <div id="navbarBasicExample " class="navbar-menu" v-else>
 
             <div class="navbar-end">
-                <router-link class="navbar-item button is-success is-light mr-4" :to="{name: 'registro'}">Register</router-link>
-                <router-link class="navbar-item button is-info is-light" :to="{name: 'login'}">Login</router-link>
+                <router-link class="navbar-item button is-outlined is-success is-light mr-4 register" :to="{name: 'registro'}">Register</router-link>
+                <router-link class="navbar-item button is-outlined is-info is-light login" :to="{name: 'login'}">Login</router-link>
             </div>
         
         </div>
@@ -88,7 +88,7 @@
     nav{background-color: var(--nav-bg);}
     .navbar-item{color: var(--nav-color)}
     .button{min-width: 80px;}
-    .profile, .logout{background-color: unset !important}
+    .profile, .logout, .register, .login{background-color: unset !important}
     nav select{
       background-color: var(--theme-picker-bg) !important;
       color: var(--theme-picker-color) !important;
