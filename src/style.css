@@ -5,12 +5,41 @@
 /*Normal*/
 :root,
 :root.normal{
-    --title-color: #172b4d;
+    /*General*/
     --body-bg: #fcfcfc;
+    /*NewTask*/
+    --newtask-bg:white;
+    --newtask-color: #a09f9f;
+    /*Filters*/
+    --filter-bg:white;
+    --filter-color: #5c5d60;
+    /*Task*/
+    --task-title: #5c5d60;
+    --task-bg: white;
+    --task-color: #5c5d60;
+    /*Task - Complete*/
+    --task-complete-bg: #efefef;
+    --task-complete-border:solid 1px lightgray;
+    --task-complete-color:#5c5d60;
 }
 /* Modo oscuro */
 :root.dark-mode{
-    --body-bg:black;
+    --body-bg:#130f25;
+    /*NewTask*/
+    --newtask-bg:#1d1734;
+    --newtask-color: white;
+    /*Filters*/
+    --filter-bg:#382f60;
+    --filter-color: white;
+    /*Task - Active*/
+    --task-title:#4b81ab;
+    --task-bg: #382f60;
+    --task-color: #686e94;
+    --task-hour: #a45fbe;
+    /*Task - Complete*/
+    --task-complete-bg: #151d2f;
+    --task-complete-border:none;
+    --task-complete-color:#686e94;
 }
  /* "Post it" */
 :root.postit{

@@ -116,7 +116,10 @@ const cambiarEstadoTarea = async(id, task) =>{
 </script>
 
 <style scoped>
-.card{display: grid;}
+.card{
+    display: grid;
+    background-color: var(--task-bg);
+}
 
 i:hover{
     cursor:  pointer;
@@ -128,20 +131,27 @@ i:hover{
 .card-title{
     font-size: 14px;
     line-height: 20px;
-    color: var(--title-color);
+    color: var(--task-title);
     text-transform: capitalize;
 }
 .todo-description {
     max-height: 200px;
     overflow: auto;
+    color: var(--task-color);
     word-break: break-word;
     text-transform: capitalize;
 }
-.task-footer time{font-size: 10px;}
+.task-footer time{
+    font-size: 10px;
+    color: var(--task-hour);
+}
 /* Tareas completadas */
 .completada .card {
-    background: #efefef;
-    border: solid 1px lightgray;
+    background: var(--task-complete-bg);
+    border: var(--task-complete-border);
 }
-.completada .card-title, .completada .todo-description{text-decoration: line-through;}
+.completada .card-title, .completada .todo-description{
+    text-decoration: line-through;
+    color: var(--task-complete-color) !important;
+}
 </style>

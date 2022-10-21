@@ -55,5 +55,9 @@ form{
     max-width: 700px;
     margin: 0 auto;
 }
-input{box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);}
+input{
+    background-color: var(--newtask-bg);
+    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+    }
+input::placeholder{color: var(--newtask-color)}
 </style>
