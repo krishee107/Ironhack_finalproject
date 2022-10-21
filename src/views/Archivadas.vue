@@ -9,11 +9,12 @@
 </template>
 <script setup>
 import ArchivedTask from '../components/ArchivedTask.vue';
-import {useTaskStore} from '../store/index';
+import {useAuthStore, useTaskStore} from '../store/index';
 import {getArchivedTasks} from '../api/index'
-import { onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 
 const taskStore = useTaskStore();
+const authStore = useAuthStore();
 let archivadas;
 
 

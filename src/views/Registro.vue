@@ -34,7 +34,7 @@
 <script setup>
 import {ref} from 'vue';
 import router from '../router'
-import { register } from "../api";
+import { register, getTasks } from "../api";
 import {useAuthStore, useTaskStore} from '../store/index'
 
 const email = ref();
