@@ -4,29 +4,61 @@
             <div class="cards columns is-multiline " >
 
                 <div class="column is-4-desktop is-4-tablet is-6-mobile" :class="task.status" v-for="task in taskStore.tasks">
+                    <!-- Inicio de la card -->
                     <div class="card">
-                        <header class="card-header card-header-title"  contenteditable @blur="updateContent($event, 'title', task)">
-                            {{task.title}}
+                        <!-- Cabecera -->
+                        <header class="card-header ">
+                            <!-- Titulo -->
+                            <div class="card-title card-header-title" contenteditable @blur="updateContent($event, 'title', task)">{{task.title}}</div>
+                            <!-- Botones -->
+                                <!--Para fichas activas-->
+                                <div class="navbar-item has-dropdown is-hoverable" >
+                                    <a class="navbar-link"></a>
+                                    <div class="navbar-dropdown"  v-if="task.status == 'activa'">
+                                        <a class="navbar-item" @click="cambiarEstadoTarea(task.id, task)">
+                                            <span class="icon pr-2"><i class="fa-regular fa-square-check"></i></span>
+                                            <span>Complete job</span> 
+                                        </a>
+                                        <a class="navbar-item">
+                                            <span class="icon pr-2"><i class="fa-regular fa-folder"></i></span>
+                                            <span>Archive job</span> 
+                                        </a>
+                                        <hr class="navbar-divider">
+                                        <a class="navbar-item task-delete" @click="borrarTarea(task.id)">
+                                            <span class="icon pr-2"><i class="fa-regular fa-trash-can"></i></span>
+                                            <span>Delete job</span> 
+                                        </a>
+
+                                </div>
+                                <!-- Para fichas completas -->
+                                <div class="navbar-dropdown" v-else>
+                                    <a class="navbar-item" @click="cambiarEstadoTarea(task.id, task)">
+                                        <span class="icon pr-2"><i class="fa-solid fa-arrow-rotate-right"></i></span>
+                                        <span>Re do job</span> 
+                                    </a>
+                                    <a class="navbar-item">
+                                        <span class="icon pr-2"><i class="fa-regular fa-folder"></i></span>
+                                        <span>Archive job</span> 
+                                    </a>
+                                    <hr class="navbar-divider">
+                                    <a class="navbar-item task-delete" @click="borrarTarea(task.id)">
+                                        <span class="icon pr-2"><i class="fa-regular fa-trash-can"></i></span>
+                                        <span>Delete job</span> 
+                                    </a>
+                                </div>
+                            </div>                
+
                         </header>
 
+                        <!-- Content -->
                         <div class="card-content">
                             <div class="content">
                                 <div class="todo-description" contenteditable @blur="updateContent($event, 'description', task)">{{task.description}} </div>
                                 <div class="todo-date">{{moment(String(task.created_at)).format('DD/MM/YYYY - hh:mm')}} </div>
                             </div>
-                            <div class="task-buttons buttons columns has-text-centered" v-if="task.status == 'activa'" >
-                                <i  @click="cambiarEstadoTarea(task.id, task)" class="column fa-regular fa-square-check"></i>
-                                <i  @click="borrarTarea(task.id)" class="column fa-regular fa-trash-can"></i>
-                            </div>
-                            <div v-else>
-                                <div class="task-buttons buttons columns has-text-centered">
-                                    <i @click="cambiarEstadoTarea(task.id, task)"  class="column fa-solid fa-arrow-rotate-right"></i>
-                                    <i  @click="borrarTarea(task.id)" class="column fa-regular fa-trash-can"></i>
-                                </div>
-                            </div>
                         </div>
-
                     </div>
+                    <!---->
                 </div>
 
             </div>
@@ -38,7 +70,7 @@
 <script setup>
 import {useTaskStore} from '../store/index'
 import {deleteTask, getTasks, updateTask} from '../api/index'
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import moment from 'moment'
 
 const taskStore = useTaskStore();
@@ -79,19 +111,27 @@ const cambiarEstadoTarea = async(id, task) =>{
     })
 }
 
+
+
 </script>
 
 <style scoped>
 .card{height: 100%;}
-i{
+
+i:hover{
     cursor:  pointer;
-    font-size: 20px;
-}i:hover{font-weight: bold;}
-i.fa-square-check{color:green}
-i.fa-pen-to-square{color:blue}
-i.fa-trash-can{color:red}
+    font-weight: bold;
+}
+.task-delete{color: red}
 
-
+/*Cards */
+.card-title{
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--title-color);
+    text-transform: capitalize;
+}
+.button-task{display: block !important;}
 /* Tareas completadas */
 .completada .card {
     background: #efefef;

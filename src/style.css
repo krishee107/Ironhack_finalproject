@@ -5,6 +5,7 @@
 /*Normal*/
 :root,
 :root.normal{
+    --title-color: #172b4d;
     --body-bg: #fcfcfc;
 }
 /* Modo oscuro */
