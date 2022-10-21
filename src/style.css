@@ -41,6 +41,23 @@
     --task-complete-border:none;
     --task-complete-color:#686e94;
 }
+/* Modo rosa */
+:root.pink-mode{
+    --body-bg:#ffdede;
+    /*Filters*/
+    --filter-color: #a09f9f;
+    /*Task - Active*/
+    --task-title:#9b38fe;
+    --task-bg: #ebc3ff;
+    --task-color: #9e69fa;
+    --task-hour: #bb00ff;
+    /*Task - Complete*/
+    --task-complete-bg: #daefff;
+    --task-complete-color:rgb(80, 146, 165)
+    ;
+    --task-complete-border:none;
+
+}
  /* "Post it" */
 :root.postit{
     --body-bg:brown;
@@ -56,11 +73,7 @@
     --body-bg:rgb(21, 106, 135);
 }
 
-/* Modo rosa */
-:root.pink-mode{
-    --body-bg:#ffcad4;
-    --color:#e75480;
-  }
+
 
 /* General */
 *{    
