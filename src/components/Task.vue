@@ -135,6 +135,7 @@ i:hover{
     max-height: 200px;
     overflow: auto;
     word-break: break-word;
+    text-transform: capitalize;
 }
 .task-footer time{font-size: 10px;}
 /* Tareas completadas */
