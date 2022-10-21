@@ -47,7 +47,6 @@
                   <option value="pink-mode">Pink mode</option>
                   <option value="postit">Post it</option>
                   <option value="sky">Sky</option>
-                  <option value="bubbles">Bubbles</option>
                 </select>
               </div>
               <!-- Perfil -->

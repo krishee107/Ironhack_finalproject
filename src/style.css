@@ -79,10 +79,6 @@
     --body-bg: url('./assets/sky-background.jpg');
 }
 
-/* Modo burbujas */
-:root.bubbles{
-    --body-bg:rgb(21, 106, 135);
-}
 
 
 
