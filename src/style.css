@@ -44,12 +44,13 @@
 }
 /* Modo rosa */
 :root.pink-mode{
-    --body-bg:#ffdede;
+    --body-bg: linear-gradient(62deg, #E0C3FC 0%, #ffd6f5 50%);
+    ;
     /*Filters*/
     --filter-color: #a09f9f;
     /*Task - Active*/
     --task-title:#9b38fe;
-    --task-bg: #ebc3ff;
+    --task-bg: #edc8ff;
     --task-color: #9e69fa;
     --task-hour: #bb00ff;
     /*Task - Complete*/
@@ -90,7 +91,9 @@
 html, body {
     height: 100vh;
     background: var(--body-bg);
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /*Forms */
