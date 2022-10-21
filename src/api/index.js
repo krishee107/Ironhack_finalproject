@@ -42,7 +42,7 @@ export const newTask = async (task) =>{
     return false;
   }
 
-export const getTasks = async () =>{
+  export const getTasks = async () =>{
     const response = await supabase
     .from('task')
     .select('*')
@@ -51,6 +51,17 @@ export const getTasks = async () =>{
   
    if(response) return response.data;
    else return false
+}
+
+export const getArchivedTasks = async () =>{
+  const response = await supabase
+  .from('task')
+  .select('*') 
+  .order( 'id',  {ascending: false})
+  .eq('status', 'archivada')
+
+ if(response) return response.data;
+ else return false
 }
 
 
