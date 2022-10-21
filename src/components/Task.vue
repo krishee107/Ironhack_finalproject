@@ -1,7 +1,6 @@
 <template>
         <div class="container">
             <div class="cards columns is-multiline " >
-
                 <div class="column is-4-desktop is-6-tablet is-6-tablet" :class="task.status" v-for="task in taskStore.tasks">
                     <!-- Inicio de la card -->
                     <div class="card">
@@ -11,9 +10,9 @@
                             <div class="card-title card-header-title" contenteditable @blur="updateContent($event, 'title', task)">{{task.title}}</div>
                             <!-- Botones -->
                                 <!--Para fichas activas-->
-                                <div class="navbar-item has-dropdown is-hoverable" >
-                                    <a class="navbar-link"  @click="isHovering = !isHovering && size <= 1023"></a>
-                                    <div class="navbar-dropdown" :class="{'is-active': isHovering}"  v-if="task.status == 'activa'">
+                                <div class="navbar-item has-dropdown is-hoverable" v-if="size >= 1024">
+                                    <a class="navbar-link"></a>
+                                    <div class="navbar-dropdown"   v-if="task.status == 'activa'">
                                         <a class="navbar-item" @click="cambiarEstadoTarea(task.id, task)">
                                             <span class="icon pr-2"><i class="fa-regular fa-square-check"></i></span>
                                             <span>Complete job</span> 
@@ -27,26 +26,30 @@
                                             <span class="icon pr-2"><i class="fa-regular fa-trash-can"></i></span>
                                             <span>Delete job</span> 
                                         </a>
-
-                                </div>
-                                <!-- Para fichas completas -->
-                                <div class="navbar-dropdown" v-else>
-                                    <a class="navbar-item" @click="cambiarEstadoTarea(task.id, task)">
-                                        <span class="icon pr-2"><i class="fa-solid fa-arrow-rotate-right"></i></span>
-                                        <span>Re do job</span> 
-                                    </a>
-                                    <a class="navbar-item">
-                                        <span class="icon pr-2"><i class="fa-regular fa-folder"></i></span>
-                                        <span>Archive job</span> 
-                                    </a>
-                                    <hr class="navbar-divider">
-                                    <a class="navbar-item task-delete" @click="borrarTarea(task.id)">
-                                        <span class="icon pr-2"><i class="fa-regular fa-trash-can"></i></span>
-                                        <span>Delete job</span> 
-                                    </a>
-                                </div>
+                                    </div>
+                                    <!-- Para fichas completas -->
+                                    <div class="navbar-dropdown" v-else>
+                                        <a class="navbar-item" @click="cambiarEstadoTarea(task.id, task)">
+                                            <span class="icon pr-2"><i class="fa-solid fa-arrow-rotate-right"></i></span>
+                                            <span>Re do job</span> 
+                                        </a>
+                                        <a class="navbar-item">
+                                            <span class="icon pr-2"><i class="fa-regular fa-folder"></i></span>
+                                            <span>Archive job</span> 
+                                        </a>
+                                        <hr class="navbar-divider">
+                                        <a class="navbar-item task-delete" @click="borrarTarea(task.id)">
+                                            <span class="icon pr-2"><i class="fa-regular fa-trash-can"></i></span>
+                                            <span>Delete job</span> 
+                                        </a>
+                                    </div>
                             </div>                
-
+                                 <!-- Para fichas activas MOBILE -->
+                                 <div class="buttons-mobile" v-else>
+                                    <span class="icon pr-2"  @click="cambiarEstadoTarea(task.id, task)"><i class="fa-regular fa-square-check"></i></span>
+                                    <span class="icon pr-2"><i class="fa-regular fa-folder"></i></span>
+                                    <span class="icon pr-2" @click="borrarTarea(task.id)"><i class="fa-regular fa-trash-can"></i></span>
+                                </div>
                         </header>
 
                         <!-- Content -->
@@ -72,10 +75,9 @@ import {useTaskStore} from '../store/index'
 import {deleteTask, getTasks, updateTask} from '../api/index'
 import { onMounted, ref } from 'vue';
 import moment from 'moment'
-let size = ref(screen.width)
 const taskStore = useTaskStore();
+const size = ref(screen.width);
 let task ; 
-let isHovering = ref(false);
 
 onMounted(async () =>{
     if(taskStore.tasks.length == 0){
