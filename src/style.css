@@ -66,8 +66,10 @@
     /*Filters*/
     --filter-bg:#00bbff;
     --filter-color: white;
+    /*Task - Active*/
+    --task-bg: #ffe93e;
     /*Task - Complete*/
-    --task-complete-bg: #b1aeae;
+    --task-complete-bg: hsl(0, 100%, 61%);
     --task-complete-border:solid 1px rgb(151, 151, 151);
     --task-complete-color:#5c5d60;
 }

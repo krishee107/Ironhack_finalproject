@@ -11,9 +11,6 @@ export const useThemeStore = defineStore('theme', {
         setTheme(theme){
             this.theme = theme;
             document.documentElement.className = this.theme;
-
-            if(this.theme == 'postit')
-                this.randomColors();
         },
         getTheme(){
             return this.theme;

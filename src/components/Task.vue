@@ -3,7 +3,7 @@
             <div class="cards columns is-multiline " >
                 <div class="column is-4-desktop is-6-tablet is-6-tablet" :class="task.status" v-for="task in taskStore.tasks">
                     <!-- Inicio de la card -->
-                    <div class="card">
+                    <div class="card" >
                         <!-- Cabecera -->
                         <header class="card-header ">
                             <!-- Titulo -->
@@ -71,12 +71,12 @@
 </template>
 
 <script setup>
-import {useTaskStore, useAuthStore} from '../store/index'
+import {useTaskStore,useThemeStore} from '../store/index'
 import {deleteTask, getTasks, updateTask} from '../api/index'
 import { onMounted, ref, onUpdated } from 'vue';
 import moment from 'moment'
 const taskStore = useTaskStore();
-const authStore = useAuthStore();
+const themeStore =useThemeStore();
 const size = ref(screen.width);
 let task ; 
 
@@ -85,8 +85,6 @@ onMounted(async () =>{
         task = await getTasks();
         taskStore.tasks = task;
     }
-    if(authStore.theme == "postit")
-        console.log("YES")
 })
 
 const updateContent = async (e, type, task) =>{
