@@ -16,21 +16,21 @@
       <div class="navbar-menu" v-if="authStore.isAuth">
             <div class="navbar-start">
               
-                <router-link class="navbar-item button is-outlined ml-4" :to="{name: 'home'}">
+                <router-link class="navbar-item ml-4" :to="{name: 'home'}">
                   <span class="icon">
                     <i class="fa-solid fa-house-chimney"></i>
                   </span>
                   <span>Home</span>
                 </router-link>
 
-                <router-link class="navbar-item button is-outlined ml-4" :to="{name: 'home'}">
+                <router-link class="navbar-item ml-4" :to="{name: 'home'}">
                   <span class="icon">
                     <i class="fa-regular fa-folder"></i>
                   </span>
                   <span>Archived</span>
                 </router-link>
 
-                <router-link class="navbar-item button is-outlined ml-4" :to="{name: 'home'}">
+                <router-link class="navbar-item  ml-4" :to="{name: 'home'}">
                   <span class="icon">
                     <i class="fa-regular fa-clipboard"></i>
                   </span>
@@ -51,9 +51,9 @@
                 </select>
               </div>
               <!-- Perfil -->
-                <router-link class="navbar-item button is-link is-light  mr-4" :to="{name: 'home'}">Profile</router-link>
+                <router-link class="navbar-item button  is-link is-light  mr-4 profile" :to="{name: 'home'}">Profile</router-link>
                 <!-- Logout-->
-                <button class="navbar-item button is-danger is-light " @click="authStore.logout()">Logout</button>            
+                <button class="navbar-item button  is-danger is-light  logout" @click="authStore.logout()">Logout</button>            
             </div>
       </div>
       <div id="navbarBasicExample " class="navbar-menu" v-else>
@@ -85,5 +85,13 @@
     </script>
 
     <style scoped>  
+    nav{background-color: var(--nav-bg);}
+    .navbar-item{color: var(--nav-color)}
     .button{min-width: 80px;}
+    .profile, .logout{background-color: unset !important}
+    nav select{
+      background-color: var(--theme-picker-bg) !important;
+      color: var(--theme-picker-color) !important;
+      border-color: var(--theme-picker-color);
+    }
     </style>

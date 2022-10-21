@@ -7,6 +7,11 @@
 :root.normal{
     /*General*/
     --body-bg: linear-gradient(0deg, #ffffff 0%, #fcfcfc 100%);
+    /*Navbar*/
+    --nav-bg:white;
+    --nav-color:#505152;
+    --theme-picker-bg: white;
+    --theme-picker-color:#505152;
     /*NewTask*/
     --newtask-bg:white;
     --newtask-color: #a09f9f;
@@ -24,7 +29,14 @@
 }
 /* Modo oscuro */
 :root.dark-mode{
+    /*General*/
     --body-bg: linear-gradient(60deg, #130f25 0%, #550852 100%);
+    /*Navbar*/
+    --nav-bg: #0f0f133d;
+    --nav-color:#983294;
+    --theme-picker-bg: rgb(44, 7, 49);
+    --theme-picker-color:#983294;
+
     ;
     /*NewTask*/
     --newtask-bg:#221b41;
@@ -44,14 +56,13 @@
 }
 /* Modo rosa */
 :root.pink-mode{
-    --body-bg: linear-gradient(62deg, #E0C3FC 0%, #ffd6f5 50%);
-    ;
+    --body-bg: -webkit-radial-gradient(top left, #FEFEFE, #ffaaeb);
     /*Filters*/
     --filter-color: #a09f9f;
     /*Task - Active*/
-    --task-title:#9b38fe;
-    --task-bg: #edc8ff;
-    --task-color: #9e69fa;
+    --task-title:#bb00ff;
+    --task-bg: #ffe8f7;
+    --task-color: #bb00ff;
     --task-hour: #bb00ff;
     /*Task - Complete*/
     --task-complete-bg: #daefff;
@@ -64,6 +75,7 @@
 :root.postit{
     --body-bg: url('./assets/postit-background.jpg');
     --task-minheight: 300px;
+    --nav-bg:#ffffffe6;
     /*Filters*/
     --filter-bg:#00bbff;
     --filter-color: white;
@@ -78,10 +90,16 @@
 /* Modo nubes */
 :root.sky{
     --body-bg: url('./assets/sky-background.jpg');
+    --nav-bg:#e1ffffc4;
 }
 /* Modo Cyber */
 :root.cyberpunk{
     --body-bg: url('./assets/future-background.gif');
+    /*Navbar*/
+    --nav-bg:#3b014ad6;
+    --nav-color: #b42dc0;
+    --theme-picker-bg: #3b014ad6;
+    --theme-picker-color: #b42dc0;
     /*NewTask*/
     --newtask-bg:#091665;
     --newtask-color: #01c8ff;
