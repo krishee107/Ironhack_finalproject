@@ -33,13 +33,13 @@
     <div class="container">
             <form @submit.prevent="setSupaProfile()">
                 <h2 class="title">Actualizar perfil:</h2>
-                <label class="label">Username:</label>
-                <input class="input mt-4" type='text' placeholder='Enter a new username'   v-model="username" />
-                <label class="label">Avatar URL:</label>
-                <input class="input mt-4" type='text' placeholder='Enter a avatar (url)'    v-model="avatar"/>
-                <label class="label">Website:</label>
-                <input class="input mt-4" type='text' placeholder='Enter a website'   v-model="website"/>
-                <button  class="button is-primary is-fullwidth mt-4">Update profile</button>
+                <label class="label mt-4">Username:</label>
+                <input class="input " type='text' placeholder='Enter a new username'   v-model="username" />
+                <label class="label mt-4">Avatar URL:</label>
+                <input class="input " type='text' placeholder='Enter a avatar (url)'    v-model="avatar"/>
+                <label class="label mt-4">Website:</label>
+                <input class="input " type='text' placeholder='Enter a website'   v-model="website"/>
+                <button  class="button is-fullwidth mt-4">Update profile</button>
             </form>
         </div>
 </div>
@@ -79,8 +79,16 @@ onMounted( async() =>{
     max-width: 400px;
     margin: 20px auto;    
     background: var(--task-bg);
+    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
 }
+
 form, .label, h2{
     color: var(--task-title) !important;
 }
+button{
+    background: var(--filter-bg);
+    color: var(--filter-color);
+    border-color: var(--filter-bg);
+}
+button:hover{color: white}
 </style>
