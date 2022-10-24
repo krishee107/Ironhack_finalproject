@@ -4,10 +4,13 @@
         <div class="container">
             
             <div class="profile">
-                <figure class="media-left">
-                    <p class="image is-128x128 ">
-                    <img src="https://bulma.io/images/placeholders/128x128.png" class="is-rounded">
+                <figure class="media-left is-flex is-justify-content-center">
+                    <p class="image is-128x128 " v-if="authStore.avatar!= null && authStore.avatar != 'Not set'">
+                        <img :src="authStore.avatar" class="is-rounded ">
                     </p>
+                    <p class="image is-128x128 " v-else >
+                        <img src="https://bulma.io/images/placeholders/128x128.png" class="is-rounded " >
+                    </p>                   
                 </figure>
                 <div class="field">
                     <label class="label">Usuario</label>
@@ -69,6 +72,9 @@ onMounted( async() =>{
     padding: 30px;
     max-width: 400px;
     margin: 20px auto;    
-    background-color: white;
+    background: var(--task-bg);
+}
+form, .label{
+    color: var(--task-title) !important;
 }
 </style>
