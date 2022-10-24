@@ -5,7 +5,7 @@
             
             <div class="profile">
                 <figure class="media-left is-flex is-justify-content-center">
-                    <p class="image is-128x128 " v-if="authStore.avatar!= null && authStore.avatar != 'Not set'">
+                    <p class="image is-128x128 " v-if="authStore.avatar!= null && authStore.avatar != 'Enter an avatar URL'">
                         <img :src="authStore.avatar" class="is-rounded ">
                     </p>
                     <p class="image is-128x128 " v-else >
@@ -32,10 +32,11 @@
 <div class="section">
     <div class="container">
             <form @submit.prevent="setSupaProfile()">
-                <input className='my-4 border-2 border-gray-500 rounded-xl p-4 w-full' type='username' placeholder='Enter a username' v-model="username" />
-                <button  className='w-full mt-4 p-2 pl-5 pr-5 bg-blue-500 text-gray-100 text-lg rounded-lg focus:border-4 border-blue-300'>
-                    <span>Update profile</span>
-                </button>
+                <h2 class="title">Actualizar perfil:</h2>
+                <input class="input mt-4" type='text' placeholder='Enter a new username'   v-model="username" />
+                <input class="input mt-4" type='text' placeholder='Enter a website'   v-model="website"/>
+                <input class="input mt-4" type='text' placeholder='Enter a avatar (url)'    v-model="avatar"/>
+                <button  class="button is-primary is-fullwidth mt-4">Update profile</button>
             </form>
         </div>
 </div>
@@ -54,7 +55,8 @@ let avatar = ref(authStore.avatar);
 let website = ref(authStore.website);
 
 const setSupaProfile = async () =>{
- await updateProfile(authStore.id, username.value);
+ const response =await updateProfile(authStore.id, username.value, avatar.value, website.value);
+ console.log(response)
 }
 
 onMounted( async() =>{
@@ -74,7 +76,7 @@ onMounted( async() =>{
     margin: 20px auto;    
     background: var(--task-bg);
 }
-form, .label{
+form, .label, h2{
     color: var(--task-title) !important;
 }
 </style>

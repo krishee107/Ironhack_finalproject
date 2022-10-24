@@ -128,11 +128,13 @@ export const deleteTask = async(taskId)=>{
     }
   }
 
-  export async function updateProfile(user_id, username) {
+  export async function updateProfile(user_id, username, avatar, website) {
     try {
       const updates = {
         id: user_id,
         username,
+        avatar_url: avatar,
+        website,
         updated_at: new Date(),
       };
   
