@@ -10,6 +10,9 @@ export const useAuthStore = defineStore('auth', {
             // Guardaremos el id de supabase que nos dara al hacer el login
             id: undefined,
             email: '',
+            username: 'Not set',
+            avatar: 'Not set',
+            website: 'Not set'
 
         }
     },
@@ -27,7 +30,12 @@ export const useAuthStore = defineStore('auth', {
             this.isAuth=false;
             return true;
         },
-        
+        setProfile(username, avatar, website){
+            this.username=username;
+            this.avatar=avatar;
+            this.website=website;
+            return true;
+        }
     },
     persist: {
       enabled: true

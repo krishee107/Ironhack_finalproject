@@ -106,3 +106,41 @@ export const deleteTask = async(taskId)=>{
     if(response) return true;
     else return false
   }
+
+  export async function getProfile(user_id) {
+    try {
+      let { data, error, status } = await supabase
+        .from('profiles')
+        .select(`*`)
+        .eq('id', user_id)
+        .single();
+  
+      if (error && status !== 406) {
+        throw error;
+      }
+  
+      if (data) {
+        return data
+      }
+    } catch (error) {
+      alert(error.message);
+      return false;
+    }
+  }
+
+  export async function updateProfile(user_id, username) {
+    try {
+      const updates = {
+        id: user_id,
+        username,
+        updated_at: new Date(),
+      };
+  
+      let { error } = await supabase.from('profiles').upsert(updates);
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  }
