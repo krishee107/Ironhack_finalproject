@@ -33,9 +33,12 @@
     <div class="container">
             <form @submit.prevent="setSupaProfile()">
                 <h2 class="title">Actualizar perfil:</h2>
+                <label class="label">Username:</label>
                 <input class="input mt-4" type='text' placeholder='Enter a new username'   v-model="username" />
-                <input class="input mt-4" type='text' placeholder='Enter a website'   v-model="website"/>
+                <label class="label">Avatar URL:</label>
                 <input class="input mt-4" type='text' placeholder='Enter a avatar (url)'    v-model="avatar"/>
+                <label class="label">Website:</label>
+                <input class="input mt-4" type='text' placeholder='Enter a website'   v-model="website"/>
                 <button  class="button is-primary is-fullwidth mt-4">Update profile</button>
             </form>
         </div>
@@ -56,6 +59,7 @@ let website = ref(authStore.website);
 
 const setSupaProfile = async () =>{
  const response =await updateProfile(authStore.id, username.value, avatar.value, website.value);
+ authStore.setProfile(username.value, avatar.value, website.value)
  console.log(response)
 }
 
