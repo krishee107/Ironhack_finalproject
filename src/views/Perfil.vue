@@ -1,7 +1,7 @@
 <template>
 
-    <div class="section">
-        <div class="container">
+    <div class="section columns">
+        <div class="box column is-two-fifths">
             
             <div class="profile">
                 <figure class="media-left is-flex is-justify-content-center">
@@ -27,10 +27,7 @@
             </div>
         </div>
 
-</div>
-
-<div class="section">
-    <div class="container">
+    <div class="box column is-two-fifths">
             <form @submit.prevent="setSupaProfile()">
                 <h2 class="title">Actualizar perfil:</h2>
                 <label class="label mt-4">Username:</label>
@@ -73,10 +70,9 @@ onMounted( async() =>{
 </script>
 
 <style scoped>
-.section{
+.box{
     border-radius: 14px;
     padding: 30px;
-    max-width: 400px;
     margin: 20px auto;    
     background: var(--task-bg);
     box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
