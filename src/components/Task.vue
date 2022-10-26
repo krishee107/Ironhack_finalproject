@@ -17,7 +17,7 @@
                                             <span class="icon pr-2"><i class="fa-regular fa-square-check"></i></span>
                                             <span>Complete job</span> 
                                         </a>
-                                        <a class="navbar-item" @click="archivar(task.id, task)">
+                                        <a class="navbar-item" @click="archivar(task)">
                                             <span class="icon pr-2"><i class="fa-regular fa-folder"></i></span>
                                             <span>Archive job</span> 
                                         </a>
@@ -33,7 +33,7 @@
                                             <span class="icon pr-2"><i class="fa-solid fa-arrow-rotate-right"></i></span>
                                             <span>Re do job</span> 
                                         </a>
-                                        <a class="navbar-item" @click="archivar(task.id, task)">
+                                        <a class="navbar-item" @click="archivar(task)">
                                             <span class="icon pr-2"><i class="fa-regular fa-folder"></i></span>
                                             <span>Archive job</span> 
                                         </a>
@@ -47,7 +47,7 @@
                                  <!-- Para fichas activas MOBILE -->
                                  <div class="buttons-mobile" v-else>
                                     <span class="icon pr-2"  @click="cambiarEstadoTarea(task)"><i class="fa-regular fa-square-check"></i></span>
-                                    <span class="icon pr-2"><i class="fa-regular fa-folder"></i></span>
+                                    <span class="icon pr-2" @click="archivar(task)"><i class="fa-regular fa-folder"></i></span>
                                     <span class="icon pr-2" @click="borrarTarea(task)"><i class="fa-regular fa-trash-can"></i></span>
                                 </div>
                         </header>
@@ -105,13 +105,15 @@ const borrarTarea = async (task) =>{
     });
 }
 
-const archivar = async(id, task) =>{
+const archivar = async(task) =>{
     task.status = "archivada";
-    const status = await updateTask(id, task).then((res) =>{
+    const status = await updateTask(task.id, task).then(async (res) =>{
         //Borramos la tarea del array 
-        taskStore.deleteTask(id);
+        taskStore.deleteTask(task.id);
         //La añadimos al array de archivadas
         taskStore.archiveTask(task);
+        //Lo añadimos al historial
+        const updateHistorial = await newHistoric(task.user_id, task.id,  `La tarea ${task.id}: ${task.title} ha pasado a estar archivada`).then(() => taskStore.addToHistoric(`La tarea ${task.id}: ${task.title} ha pasado a estar archivada`))
     })
 }
 
