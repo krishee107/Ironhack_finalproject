@@ -43,16 +43,28 @@ export const login = async (email, password) =>{
 }
 
 export const newTask = async (task) =>{
-    const response = await supabase.from('task')
-    .insert({
-      user_id: task.user_id, 
-      title: task.title,
-      description: task.description
-    })
 
-    // 201 = insertado con éxito                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              todo identificar el return y retornar lo que nos interese
-    if(response.status == 201) return true;
-    return false;
+  try {
+      let { data, error, status } = await supabase
+      .from('task')
+      .insert({
+        user_id: task.user_id, 
+        title: task.title,
+        description: task.description
+      })
+      .select('*') 
+      if (error) {
+        throw error;
+      }
+
+      if (data) {
+        return data
+      }
+  } catch (error) {
+      alert(error.message);
+      return false;
+  }
+
   }
 
   export const getTasks = async (user_id) =>{

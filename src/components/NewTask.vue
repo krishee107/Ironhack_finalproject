@@ -43,13 +43,15 @@ const onSubmit = async ()=>{
         description: description.value
     }
     const status = await newTask(task).then(async (res)=>{
-        taskStore.addTask();
+        //taskStore.addTask(res);
+        taskStore.reloadTask(authStore.id)
         title.value = '';
         description.value= '';
         const updateHistorial = await newHistoric(task.user_id, task.id, `Se ha creado una nueva tarea llamada: ${task.title}`).then(() => taskStore.addToHistoric(`Se ha creado una nueva tarea llamada: ${task.title}`))
-
     })
 }
+
+
 </script>
 
 <style scoped>

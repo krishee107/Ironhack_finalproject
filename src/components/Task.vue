@@ -1,9 +1,9 @@
 <template>
         <div class="container">
             <div class="cards columns is-multiline " >
-                <div class="column is-4-desktop is-6-tablet is-6-tablet" :class="task.status" v-for="task in taskStore.tasks">
+                <div class="column is-4-desktop is-6-tablet is-6-tablet" :class="task.status" v-for="task in taskStore.tasks" :key="task.id"> 
                     <!-- Inicio de la card -->
-                    <div class="card" >
+                    <div class="card"  >
                         <!-- Cabecera -->
                         <header class="card-header ">
                             <!-- Titulo -->
@@ -73,19 +73,24 @@
 <script setup>
 import {useAuthStore, useTaskStore} from '../store/index'
 import {deleteTask, getTasks, updateTask, newHistoric} from '../api/index'
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import moment from 'moment'
 const taskStore = useTaskStore();
 const authStore = useAuthStore();
 const size = ref(screen.width);
-let task ; 
+let tasks = ref(taskStore.tasks)
 
 onMounted(async () =>{
-    if(taskStore.tasks == null || taskStore.tasks.length == 0){
-        task = await getTasks(authStore.id);
+    if(taskStore.tasks == null){
+        let task = await getTasks(authStore.id);
         taskStore.tasks = task;
     }
 })
+
+/*
+watch(taskStore.tasks, async (currentValue, oldValue) => {
+    tasks = taskStore.tasks
+});*/
 
 const updateContent = async (e, type, task) =>{
     let historic;
