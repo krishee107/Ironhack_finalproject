@@ -24,4 +24,19 @@ onMounted( async () =>{
 </script>
 
 <style scoped>
+.historic {
+    max-height: 700px;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow-y: auto;
+}
+
+.item {
+    background: var(--task-bg);
+    color: var(--task-color);
+    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
 </style>
