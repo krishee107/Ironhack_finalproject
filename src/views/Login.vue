@@ -66,11 +66,11 @@ const password = ref();
 const taskStore = useTaskStore();
 
 const onSubmit = async () =>{
-        const data = await login(email.value, password.value);
-        if(data != null && data != false){
-            const login = authStore.login(data, email.value);
+        const status = await login(email.value, password.value);
+        if(status != null && status != false){
+            const login = authStore.login(status, email.value);
             if(login){
-                taskStore.tasks = await getTasks(data).then( (tasks) =>{
+                taskStore.tasks = await getTasks(status).then( (tasks) =>{
                     router.replace({ path: '/' })
                 })
             }
