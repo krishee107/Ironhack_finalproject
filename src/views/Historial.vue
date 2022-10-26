@@ -1,10 +1,12 @@
 <template>
-    <div v-for="cambio in historial">{{cambio}}</div>
+    <div class="historic">
+        <div class="item" v-for="cambio in historial">{{cambio}}</div>
+    </div>
 </template>
 
 <script setup>
 import { getHistoric } from '../api/index'
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useAuthStore, useTaskStore } from '../store';
 
 const taskStore = useTaskStore();
