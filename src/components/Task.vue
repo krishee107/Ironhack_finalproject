@@ -13,7 +13,7 @@
                                 <div class="navbar-item has-dropdown is-hoverable" v-if="size >= 1024">
                                     <a class="navbar-link"></a>
                                     <div class="navbar-dropdown"   v-if="task.status == 'activa'">
-                                        <a class="navbar-item" @click="cambiarEstadoTarea(task.id, task)">
+                                        <a class="navbar-item" @click="cambiarEstadoTarea(task)">
                                             <span class="icon pr-2"><i class="fa-regular fa-square-check"></i></span>
                                             <span>Complete job</span> 
                                         </a>
@@ -29,7 +29,7 @@
                                     </div>
                                     <!-- Para fichas completas -->
                                     <div class="navbar-dropdown" v-else>
-                                        <a class="navbar-item" @click="cambiarEstadoTarea(task.id, task)">
+                                        <a class="navbar-item" @click="cambiarEstadoTarea(task)">
                                             <span class="icon pr-2"><i class="fa-solid fa-arrow-rotate-right"></i></span>
                                             <span>Re do job</span> 
                                         </a>
@@ -46,7 +46,7 @@
                             </div>                
                                  <!-- Para fichas activas MOBILE -->
                                  <div class="buttons-mobile" v-else>
-                                    <span class="icon pr-2"  @click="cambiarEstadoTarea(task.id, task)"><i class="fa-regular fa-square-check"></i></span>
+                                    <span class="icon pr-2"  @click="cambiarEstadoTarea(task)"><i class="fa-regular fa-square-check"></i></span>
                                     <span class="icon pr-2"><i class="fa-regular fa-folder"></i></span>
                                     <span class="icon pr-2" @click="borrarTarea(task)"><i class="fa-regular fa-trash-can"></i></span>
                                 </div>
@@ -115,14 +115,15 @@ const archivar = async(id, task) =>{
     })
 }
 
-const cambiarEstadoTarea = async(id, task) =>{
+const cambiarEstadoTarea = async(task) =>{
     if(task.status == "completada")
         task.status = "activa"
     else if(task.status = "activa")
         task.status = "completada"  
         
-    const status = await updateTask(id, task).then((res) =>{
-        taskStore.updateTask(id, task);
+    const status = await updateTask(task.id, task).then(async (res) =>{
+        taskStore.updateTask(task.id, task);
+        const updateHistorial = await newHistoric(task.user_id, task.id,  `La tarea ${task.id}: ${task.title} ha cambiado su estado a: ${task.status}`).then(() => taskStore.addToHistoric( `La tarea ${task.id}: ${task.title} ha cambiado su estado a: ${task.status}`))
     })
 }
 
