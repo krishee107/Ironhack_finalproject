@@ -104,6 +104,7 @@ const borrarTarea = async (task) =>{
 const status = await deleteTask(task.id).then(async () =>{
     taskStore.deleteTask(task.id);
     const updateHistorial = await newHistoric(task.user_id, task.id,  `La tarea ${task.id}: ${task.title} ha sido eliminada`).then(() => taskStore.addToHistoric(`La tarea ${task.id}: ${task.title} ha sido eliminada`))
+    location.reload();
 });
 }
 
@@ -117,6 +118,7 @@ const archivar = async(task) =>{
         taskStore.archiveTask(task);
         //Lo añadimos al historial
         const updateHistorial = await newHistoric(task.user_id, task.id,  `La tarea ${task.id}: ${task.title} ha pasado a estar archivada`).then(() => taskStore.addToHistoric(`La tarea ${task.id}: ${task.title} ha pasado a estar archivada`))
+        location.reload();
     })
 }
 

@@ -14,12 +14,12 @@
 <script setup>
 import Task from './Task.vue'
 import { useTaskStore} from '../store/index'
-import { ref, watch } from 'vue';
+import {newHistoric, updateTask} from '../api/index'
 
 const taskStore = useTaskStore();
-//const tasks = ref(taskStore.tasks);
 
 const props = defineProps({tasks: Object})
+
 </script>
 
 <style scoped>
