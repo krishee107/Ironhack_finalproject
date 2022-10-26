@@ -27,6 +27,7 @@ export const useTaskStore = defineStore('task', {
             this.tasks = [];
             this.archivedTask = [];
             this.filter = 'all';
+            this.historic= []
             return true;
         },
         setTask() {
