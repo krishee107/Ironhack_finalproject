@@ -50,7 +50,7 @@ export const useTaskStore = defineStore('task', {
             this.tasks.push(data[0])
             return this.tasks;
         },
-        async filterTask(filter){
+        filterTask(filter){
             //Cambiamos el filtro
             this.filter=filter;
             //Si quiere algo que no sea "all", filtramos

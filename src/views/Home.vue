@@ -3,8 +3,8 @@
         <div class="container">
             <div class="logged" v-if="authStore.isAuth">
                 <NewTask/>
-                <Filter/>
-                <TaskList/>
+                <Filter @filter="onFilter" />
+                <TaskList :tasks="tasks" />
             </div>
             
 
@@ -23,12 +23,25 @@
 </template>
 
 <script setup>
-import {useAuthStore} from '../store/index'
-import TaskList from '../components/TaskList.vue';
-import NewTask from '../components/NewTask.vue';
-import Filter from '../components/Filter.vue';
+    import {useAuthStore, useTaskStore} from '../store/index'
+    import TaskList from '../components/TaskList.vue';
+    import NewTask from '../components/NewTask.vue';
+    import Filter from '../components/Filter.vue';
+    import { ref, computed } from 'vue';
+    import { getTasks } from '../api';
 
-const authStore = useAuthStore();
+    const authStore = useAuthStore();
+    const taskStore = useTaskStore();
+    let tasks = ref(taskStore.tasks);
+
+    const onFilter = async (filter) => {
+        taskStore.tasks = await getTasks(authStore.id)
+        tasks = await taskStore.filterTask(filter);
+        location.reload();
+
+    }
+    
+
 
 </script>
 

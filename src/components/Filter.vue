@@ -2,9 +2,9 @@
     <div class="section">
         <div class="container">
             <div class="buttons is-justify-content-center is-flex">
-                <button @click="changeFilter('all')" class=" button is-normal">All</button>
-                <button @click="changeFilter('activa')" class=" button is-normal">Todo</button>
-                <button @click="changeFilter('completada')" class="button is-normal">Done</button>
+                <button @click="onFilter('all')" class=" button is-normal">All</button>
+                <button @click="onFilter('activa')" class=" button is-normal">Todo</button>
+                <button @click="onFilter('completada')" class="button is-normal">Done</button>
             </div>
         </div>
     </div>
@@ -14,13 +14,23 @@
     import {useAuthStore, useTaskStore} from '../store/index'
     import { getTasks} from '../api'
 
+
+    
     const taskStore = useTaskStore();
     const authStore = useAuthStore();
+    
+    const emits = defineEmits(['filter'])
+
+    const onFilter = (filter) =>{
+        emits('filter', filter);
+    }
 
     const changeFilter = async (filter) =>{
-        taskStore.tasks = await getTasks(authStore.id);
         taskStore.filterTask(filter);
-        location.reload();
+        emits(taskStore.filter)
+        /*taskStore.tasks = await getTasks(authStore.id);
+        taskStore.filterTask(filter);
+        location.reload();*/
     };
 
 </script>

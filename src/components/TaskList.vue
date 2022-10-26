@@ -3,7 +3,7 @@
             <div class="container">
                 <div class="taskList">
                     <div class="cards columns is-multiline " >
-                        <Task :id="task.id" :key="task.id"  v-for="task in tasks" :task="task" />
+                        <Task :id="task.id" :key="task.id"  v-for="task in props.tasks" :task="task" />
                     </div>
                 </div>
             </div>
@@ -17,20 +17,9 @@ import { useTaskStore} from '../store/index'
 import { ref, watch } from 'vue';
 
 const taskStore = useTaskStore();
-const tasks = ref(taskStore.tasks);
-const filte = ref(taskStore.filter)
+//const tasks = ref(taskStore.tasks);
 
-const filter = (val) => {
-    taskStore.filter = val
-    console.log(taskStore.filter)
-}
-
-watch(filte, (newUsername) => {
-    console.log(newUsername)
-});
-
-    
-
+const props = defineProps({tasks: Object})
 </script>
 
 <style scoped>
