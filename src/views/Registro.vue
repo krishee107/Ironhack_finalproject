@@ -45,9 +45,9 @@ const taskStore = useTaskStore();
 
 
 const onSubmit = async () =>{
-    const status = await register(email.value, password.value);
-    if(status != null && status != false){
-        let id = status.data.user.id
+    const data = await register(email.value, password.value);
+    if(data != null && data != false){
+        let id = data.user.id
         const login = await authStore.login(id, email.value)
         if(login){
             taskStore.tasks = await getTasks(id).then( (tasks) =>{
