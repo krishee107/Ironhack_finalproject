@@ -22,7 +22,7 @@
                                             <span>Archive job</span> 
                                         </a>
                                         <hr class="navbar-divider">
-                                        <a class="navbar-item task-delete" @click="borrarTarea(task.id)">
+                                        <a class="navbar-item task-delete" @click="borrarTarea(task)">
                                             <span class="icon pr-2"><i class="fa-regular fa-trash-can"></i></span>
                                             <span>Delete job</span> 
                                         </a>
@@ -38,7 +38,7 @@
                                             <span>Archive job</span> 
                                         </a>
                                         <hr class="navbar-divider">
-                                        <a class="navbar-item task-delete" @click="borrarTarea(task.id)">
+                                        <a class="navbar-item task-delete" @click="borrarTarea(task)">
                                             <span class="icon pr-2"><i class="fa-regular fa-trash-can"></i></span>
                                             <span>Delete job</span> 
                                         </a>
@@ -48,7 +48,7 @@
                                  <div class="buttons-mobile" v-else>
                                     <span class="icon pr-2"  @click="cambiarEstadoTarea(task.id, task)"><i class="fa-regular fa-square-check"></i></span>
                                     <span class="icon pr-2"><i class="fa-regular fa-folder"></i></span>
-                                    <span class="icon pr-2" @click="borrarTarea(task.id)"><i class="fa-regular fa-trash-can"></i></span>
+                                    <span class="icon pr-2" @click="borrarTarea(task)"><i class="fa-regular fa-trash-can"></i></span>
                                 </div>
                         </header>
 
@@ -72,7 +72,7 @@
 
 <script setup>
 import {useAuthStore, useTaskStore} from '../store/index'
-import {deleteTask, getTasks, updateTask} from '../api/index'
+import {deleteTask, getTasks, updateTask, newHistoric} from '../api/index'
 import { onMounted, ref } from 'vue';
 import moment from 'moment'
 const taskStore = useTaskStore();
@@ -98,9 +98,10 @@ const updateContent = async (e, type, task) =>{
     })
 }
 
-const borrarTarea = async (id) =>{
-    const status = await deleteTask(id).then(() =>{
-        taskStore.deleteTask(id);
+const borrarTarea = async (task) =>{
+    const status = await deleteTask(task.id).then(async () =>{
+        taskStore.deleteTask(task.id);
+        const updateHistorial = await newHistoric(task.user_id, task.id,  `La tarea ${task.id}: ${task.title} ha sido eliminada`).then(() => taskStore.addToHistoric(`La tarea ${task.id}: ${task.title} ha sido eliminada`))
     });
 }
 

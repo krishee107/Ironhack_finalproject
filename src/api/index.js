@@ -166,3 +166,26 @@ export const deleteTask = async(taskId)=>{
       return false;
     }
   }
+
+  export async function newHistoric(user_id, task_id, change){
+    try {
+      let { data, error } = await supabase
+      .from('historic')
+      .insert({ 
+        user_id: user_id, 
+        task_id: task_id,
+        change:  change
+      })
+  
+      if (error) {
+        throw error;
+      }
+  
+      if (data) {
+        return data
+      }
+    } catch (error) {
+      alert(error.message);
+      return false;
+    }
+  }
