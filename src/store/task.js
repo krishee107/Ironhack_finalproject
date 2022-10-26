@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { getTasks } from '../api/index'
+import { getTasks, newTask } from '../api/index'
 
 export const useTaskStore = defineStore('task', {
     // arrow function recommended for full type inference
@@ -17,11 +17,6 @@ export const useTaskStore = defineStore('task', {
         async getTask() {
              //this.tasks =  await getTasks();
              return this.tasks;
-        },
-        async reloadTask(user_id){
-            this.task = []
-            this.tasks = await getTasks(user_id);
-            return this.tasks;
         },
         resetTask(){
             this.tasks = [];
@@ -49,7 +44,10 @@ export const useTaskStore = defineStore('task', {
 
         async addTask(task) {
             //añadir tarea
-            this.tasks.push({id: task[0].id, created_at: task[0].created_at, user_id: task[0].user_id, title: task[0].title, description: task[0].description});
+            /*this.tasks.push(task[0]);
+            return this.tasks;*/
+            const data = await newTask(task[0]);
+            this.tasks.push(data[0])
             return this.tasks;
         },
         async filterTask(filter){

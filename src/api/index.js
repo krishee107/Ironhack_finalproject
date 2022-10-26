@@ -55,6 +55,7 @@ export const newTask = async (task) =>{
         description: task.description
       })
       .select('*') 
+      
       if (error) {
         throw error;
       }
