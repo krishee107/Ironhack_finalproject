@@ -112,7 +112,7 @@ export const deleteTask = async(taskId)=>{
       let { data, error, status } = await supabase
         .from('profiles')
         .select(`*`)
-        .eq('id', user_id)
+        .eq('user_id', user_id)
         .single();
   
       if (error && status !== 406) {
@@ -131,7 +131,7 @@ export const deleteTask = async(taskId)=>{
   export async function updateProfile(user_id, username, avatar, website) {
     try {
       const updates = {
-        id: user_id,
+        user_id,
         username,
         avatar_url: avatar,
         website,

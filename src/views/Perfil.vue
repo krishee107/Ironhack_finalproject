@@ -61,9 +61,12 @@ const setSupaProfile = async () =>{
 }
 
 onMounted( async() =>{
-    if(authStore.username == 'Not set'){
+    if(authStore.username == 'Enter a username'){
         const profile =  await getProfile(authStore.id);
-        authStore.setProfile(profile.username, profile.avatar, profile.website);
+        authStore.setProfile(profile.username, profile.avatar_url, profile.website);
+        username.value = profile.username;
+        avatar.value = profile.avatar_url;
+        website.value = profile.website;
     }
 })
 

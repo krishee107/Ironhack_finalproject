@@ -27,6 +27,11 @@ export const useAuthStore = defineStore('auth', {
 
         logout(){
             // TODO cambiar el estado de autenticacion e id del usuario
+            this.id = undefined;
+            this.email = '';
+            this.username = 'Enter a username',
+            this.avatar = 'Enter an avatar URL',
+            this.website = 'Not a website URL'
             this.isAuth=false;
             return true;
         },
