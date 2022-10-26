@@ -9,7 +9,8 @@ export const useTaskStore = defineStore('task', {
             // Guardaremos los task que nos de supabase
             tasks: [],
             archivedTask: [],
-            filter: 'all'
+            filter: 'all',
+            historic: []
         }
     },
     actions: {
@@ -58,9 +59,13 @@ export const useTaskStore = defineStore('task', {
         archiveTask(task){
             this.archivedTask.push(task)
             return true;
+        },
+        addToHistoric(update){
+            this.historic.push(update)
+        },
+        setHistoric(historic){
+            this.historic = historic;
         }
-
-
 
     },
     persist: {

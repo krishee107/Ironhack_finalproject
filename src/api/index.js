@@ -146,3 +146,23 @@ export const deleteTask = async(taskId)=>{
       alert(error.message);
     }
   }
+
+  export async function getHistoric(user_id){
+    try {
+      let { data, error, status } = await supabase
+        .from('historic')
+        .select(`*`)
+        .eq('user_id', user_id)
+  
+      if (error && status !== 406) {
+        throw error;
+      }
+  
+      if (data) {
+        return data
+      }
+    } catch (error) {
+      alert(error.message);
+      return false;
+    }
+  }
