@@ -88,13 +88,20 @@ onMounted(async () =>{
 })
 
 const updateContent = async (e, type, task) =>{
-    if(type == 'title')
+    let historic;
+    if(type == 'title'){
+        historic = `La tarea con id ${task.id} ha pasado de llamarse ${task.title} a llamarse: ${e.target.innerText}`
         task.title = e.target.innerText;
-    else if(type== 'description') task.description = e.target.innerText;
+    }
+    else if(type== 'description'){
+        historic = `La tarea con id ${task.id} ha cambiado su descripcion de ${task.description} a: ${e.target.innerText}`
+        task.description = e.target.innerText;
+    } 
     else return false;
 
-    const status = await updateTask(task.id, task).then((res) =>{
+    const status = await updateTask(task.id, task).then(async (res) =>{
         taskStore.updateTask(task.id, task);
+        const updateHistorial = await newHistoric(task.user_id, task.id,  historic).then(() => taskStore.addToHistoric(historic))
     })
 }
 
