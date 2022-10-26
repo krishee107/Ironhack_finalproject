@@ -27,7 +27,7 @@
 
 <script setup>
 import {ref} from 'vue'
-import { newTask } from '../api/index'
+import { newTask, newHistoric } from '../api/index'
 import { useAuthStore, useTaskStore} from '../store/index'
 
 const authStore = useAuthStore();
@@ -42,10 +42,12 @@ const onSubmit = async ()=>{
         title: title.value,
         description: description.value
     }
-    const status = await newTask(task).then((res)=>{
+    const status = await newTask(task).then(async (res)=>{
         taskStore.addTask();
         title.value = '';
         description.value= '';
+        const updateHistorial = await newHistoric(task.user_id, task.id, `Se ha creado una nueva tarea llamada: ${task.title}`).then(() => taskStore.addToHistoric(`Se ha creado una nueva tarea llamada: ${task.title}`))
+
     })
 }
 </script>
