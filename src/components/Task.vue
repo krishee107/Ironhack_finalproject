@@ -1,5 +1,5 @@
 <template>
-            <div class="column is-4-desktop is-6-tablet is-6-tablet" :class="task.status"> 
+            <div class="column is-4-desktop is-6-tablet is-6-tablet" :class="task.status" > 
                 <!-- Inicio de la card -->
                 <div class="card"  >
                     <!-- Cabecera -->

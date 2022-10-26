@@ -11,16 +11,17 @@
 </template>
 
 <script setup>
-import {useAuthStore, useTaskStore} from '../store/index'
-import { getTasks} from '../api'
+    import {useAuthStore, useTaskStore} from '../store/index'
+    import { getTasks} from '../api'
 
-const taskStore = useTaskStore();
-const authStore = useAuthStore();
+    const taskStore = useTaskStore();
+    const authStore = useAuthStore();
 
-const changeFilter = async (filter) =>{
-    taskStore.tasks = await getTasks(authStore.id);
-    taskStore.filterTask(filter);
-};
+    const changeFilter = async (filter) =>{
+        taskStore.tasks = await getTasks(authStore.id);
+        taskStore.filterTask(filter);
+        location.reload();
+    };
 
 </script>
 
