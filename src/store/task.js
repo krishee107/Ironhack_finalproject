@@ -64,6 +64,10 @@ export const useTaskStore = defineStore('task', {
             this.archivedTask.push(task)
             return true;
         },
+        deleteArchivedTask(id){ 
+            this.archivedTask = this.archivedTask.filter(function(task) { return task.id != id; }); 
+            return true;
+        },
         addToHistoric(update){
             this.historic.push(update)
         },
