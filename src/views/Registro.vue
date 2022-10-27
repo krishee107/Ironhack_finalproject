@@ -2,7 +2,7 @@
     <!-- Si el usuario no está log, le enseñamos el registro-->
     <div class="register_template columns is-mobile is-variable is-multiline"  v-if="!authStore.isAuth">
         
-        <div class="img_box column is-5-desktop is-full-mobile is-full-tablet">
+        <div class="img_box column is-5-desktop is-full-mobile is-full-tablet ">
             <img src="../assets/todo2.jpg" alt="">
         </div>
 
@@ -84,6 +84,7 @@
     width: 100%;
     margin: 0 auto;
     height: 100%;
+    min-height: 100vh;
 }
 
 .form_box {
@@ -99,6 +100,7 @@ form{
     min-width: 300px;
     padding: 30px 0;
     display: grid;
+    gap: 15px;
 }
 input {
     border: unset;

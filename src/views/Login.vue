@@ -1,7 +1,7 @@
 <template>
     <!-- Si el usuario no tiene una sesión iniciada -->
     <div class="login_template columns is-mobile is-variable is-multiline"  v-if="!authStore.isAuth">
-        <div class="form_box column is-8-desktop is-full-mobile is-full-tablet">
+        <div class="form_box column is-7-desktop is-full-mobile is-full-tablet">
             <h1>Welcome back,</h1>
                 <form @submit.prevent="onSubmit">
                     <!-- Email-->
@@ -40,7 +40,7 @@
                     
                 </form>
         </div>
-        <div class="img_box column is-4-desktop is-full-mobile is-full-tablet">
+        <div class="img_box column is-5-desktop is-full-mobile is-full-tablet">
             <img src="../assets/todo.jpg" alt="">
         </div>
     </div>
@@ -100,6 +100,7 @@
         width: 100%;
         margin: 0 auto;
         height: 100%;
+        min-height: 100vh;
     }
 
     .form_box {
