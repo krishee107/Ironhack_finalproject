@@ -1,8 +1,10 @@
 <template>
     <div class="section">
         <div class="container is-justify-content-center">
+            <!-- Si el usuario no tiene una sesión iniciada -->
             <div v-if="!authStore.isAuth">
                 <form @submit.prevent="onSubmit">
+                    <!-- Email-->
                     <div class="field">
                         <p class="control has-icons-left has-icons-right">
                             <input class="input" type="email" placeholder="Email" v-model="email" required>
@@ -13,27 +15,30 @@
                                 <i class="fas fa-check"></i>
                             </span>
                         </p>
-                        </div>
-                        <div class="field mt-5">
+                     </div>
+                    <!-- Password -->
+                     <div class="field mt-5">
                         <p class="control has-icons-left">
                             <input class="input" type="password" placeholder="Password"  v-model="password" required>
                             <span class="icon is-small is-left">
                                 <i class="fas fa-lock"></i>
                             </span>
                         </p>
-                        </div>
-                        <div class="field mt-5">
+                    </div>
+                    <!-- Botón de envío-->
+                    <div class="field mt-5">
                         <p class="control">
                             <button class="button is-success is-fullwidth">
                             Login
                             </button>
                         </p>
                     </div>
+                    
                 </form>
             </div>
 
+            <!--Si ya tiene sesión iniciada y intenta entrar de nuevo al login-->
             <div v-else>
-
                 <article class="message is-primary">
                     <div class="message-header">
                         <p>¡Hola!</p>
@@ -45,8 +50,6 @@
                         <button class="navbar-item button is-danger is-light mt-4 " @click="authStore.logout()">Logout</button>                    
                     </div>
                     </article>
-
-
             </div>
             
         </div>
@@ -54,28 +57,30 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
-import router from '../router'
-import {useAuthStore, useTaskStore} from '../store/index'
-import {getTasks, login} from '../api/index'
+    import {ref} from 'vue'
+    import router from '../router'
+    import {useAuthStore, useTaskStore} from '../store/index'
+    import {getTasks, login} from '../api/index'
 
-const authStore = useAuthStore();
+    const authStore = useAuthStore();
 
-const email = ref();
-const password = ref();
-const taskStore = useTaskStore();
+    /*Valores a rellenar en el login*/
+    const email = ref();
+    const password = ref();
+    const taskStore = useTaskStore();
 
-const onSubmit = async () =>{
-        const status = await login(email.value, password.value);
-        if(status != null && status != false){
-            const login = authStore.login(status, email.value);
-            if(login){
-                taskStore.tasks = await getTasks(status).then( (tasks) =>{
-                    router.replace({ path: '/' })
-                })
+    /* hacer login con la bd y si funciona, redirigir*/
+    const onSubmit = async () =>{
+            const status = await login(email.value, password.value);
+            if(status != null && status != false){
+                const login = authStore.login(status, email.value);
+                if(login){
+                    taskStore.tasks = await getTasks(status).then( (tasks) =>{
+                        router.replace({ path: '/' })
+                    })
+                }
             }
-        }
-}
+    }
 </script>
 
 <style scoped>
