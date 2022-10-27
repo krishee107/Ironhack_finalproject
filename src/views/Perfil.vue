@@ -1,6 +1,6 @@
 <template>
 
-    <div class="section columns">
+    <div class="section columns" v-if="authStore.isAuth">
         <!-- Perfil del usuario -->
         <div class="box column is-two-fifths">
             <div class="profile">
@@ -48,6 +48,7 @@
             </form>
         </div>
 </div>
+
 
 
 </template>
