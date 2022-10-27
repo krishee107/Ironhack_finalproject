@@ -5,11 +5,11 @@
             <div class="timer">
                 <label class="title">Timer:</label>
                 <div class="time">
-                    <div class="hours">{{displayHours}}</div>
+                    <div class="hours">{{hours}}</div>
                     <div>:</div>
-                    <div class="minuts">{{displayMinutes}}</div>
+                    <div class="minuts">{{minutes}}</div>
                     <div>:</div>
-                    <div class="seconds">{{displaySeconds}}</div>
+                    <div class="seconds">{{seconds}}</div>
                 </div>
 
                 <div class="buttons">
@@ -19,7 +19,7 @@
                         <div class="button is-rounded is-link" @click="stopPomodoro">Stop</div>
                     </div>
                     <!-- Si aún no tenemos el cronómetro-->
-                    <div v-else>
+                    <div v-if="!timerSet">
                         <div class="button is-rounded is-link" @click="sumPomodoro(60)">Add 1h</div>
                         <div class="button is-rounded is-link" @click="sumPomodoro(5)">Add 5min</div>
                         <div class="button is-rounded is-link" @click="sumPomodoro(1)">Add 1min</div>
@@ -50,26 +50,51 @@ import { ref, watch } from 'vue';
 import { useAuthStore } from '../store';
 import moment from 'moment';
 
+const authStore = useAuthStore();
+
 
 let currentTime = 0
-let timerSet = ref(false)
+let timerSet = ref(false);
 let startTime = 0;
 let diff = ref(0);
 let hours = ref(0);
-let minuts = ref(0);
+let minutes = ref(0);
 let seconds = ref(0);
 
-const sumPomodoro = (minutes) =>{
-    currentTime += minutes;
+const sumPomodoro = (min) =>{
+    currentTime += min;
+    minutes = currentTime;
+    console.log("CUrrent: "+currentTime+" Minutes: "+ minutes)
+
+    //Seteamos el cronometro
+    if(minutes > 60)
+        hours += minutes /60;
+    //Añadimos 10 de ser necesario
+    if(hours < 10)
+        hours = "0"+hours;
+    if(minutes < 10)
+        minutes = "0"+minutes;
 }
 
-const resetPomodoro = ()=>{currentTime = startTime}
+const resetPomodoro = ()=>{
+    currentTime = startTime
+    timerSet = false;
+}
 
 const stopPomodoro = () =>{
     //clear interval
+    hours = 0;
+    minutes =0;
+    seconds = 0;
+    timerSet = false;
 }
 
 const startPomodoro = () =>{
+    //Comprobamos que el contador no sea 0
+    if(currentTime == 0)
+        alert("Añade primero el tiempo")
+    //Activamos el cronometro
+    timerSet = true;
     //Marcamos el tiempo inicial por si quiere reiniciar
     startTime = currentTime;
     //Guardamos la hora actual
@@ -81,15 +106,20 @@ const startPomodoro = () =>{
 
     //Conseguimos los minutos de diferencia
     diff = objectiveMoment.diff(nowMoment, 'minutes') 
-    console.log(diff)
+    console.log("Dif de tiempo: " +diff+ "minutos y el cronometro está en estado: "+timerSet)
 }
 
-watch(diff, (currentValue, oldValue) => {
-  console.log(currentValue);
-  console.log(oldValue);
+watch(minutes, (currentValue, oldValue) => {
+    console.log("WATCH:"+currentValue, oldValue)
+    //Seteamos el cronometro
+    if(minutes > 60)
+        hours += minutes /60;
+    //Añadimos 10 de ser necesario
+    if(hours < 10)
+        hours = "0"+hours;
+    if(minutes < 10)
+        minutes = "0"+minutes;
 });
-
-const authStore = useAuthStore();
 </script>
 
 
