@@ -57,7 +57,7 @@
 </template>
 
 <script setup>
-    import {ref} from 'vue'
+    import {onMounted, ref} from 'vue'
     import router from '../router'
     import {useAuthStore, useTaskStore} from '../store/index'
     import {getTasks, login} from '../api/index'
@@ -68,6 +68,12 @@
     const email = ref();
     const password = ref();
     const taskStore = useTaskStore();
+
+    onMounted(()=>{
+        if(authStore.isAuth)
+           router.replace({ path: '/' })
+
+    })
 
     /* hacer login con la bd y si funciona, redirigir*/
     const onSubmit = async () =>{
