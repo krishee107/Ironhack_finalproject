@@ -1,6 +1,5 @@
 <template>
-
-    <nav class="navbar p-4 is-align-items-center" role="navigation" aria-label="main navigation">
+    <nav  v-if="route.name != 'login' && route.name != 'registro'"  class="navbar p-4 is-align-items-center" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <span class="navbar-item">
           <img src="http://www.todo.de/assets/todo-logo.png">
@@ -72,8 +71,12 @@
     <script setup>
     import {useAuthStore, useTaskStore, useThemeStore} from '../store/index'
     import { onMounted } from 'vue';
+    import { computed, ref, watch } from 'vue';
+    import { useRoute } from 'vue-router';
     
-    
+    const route = useRoute();
+
+
     //const theme = ref();
     const themeStore = useThemeStore();
     const authStore = useAuthStore();
