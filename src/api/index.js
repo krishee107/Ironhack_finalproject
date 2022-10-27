@@ -164,7 +164,7 @@ export const deleteTask = async(taskId)=>{
     try {
       let { data, error, status } = await supabase
         .from('historic')
-        .select(`*`)
+        .select(`change`)
         .eq('user_id', user_id)
   
       if (error && status !== 406) {

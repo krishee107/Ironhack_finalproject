@@ -68,7 +68,7 @@ export const useTaskStore = defineStore('task', {
             this.historic.push(update)
         },
         setHistoric(historic){
-            this.historic = historic;
+            this.historic.push(historic.change);
         }
 
     },

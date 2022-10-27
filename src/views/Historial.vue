@@ -1,6 +1,6 @@
 <template>
     <div class="historic">
-        <div class="item" v-for="cambio in historial">{{cambio}}</div>
+        <div class="item" v-for="cambio in taskStore.historic">{{cambio}}</div>
     </div>
 </template>
 
@@ -11,14 +11,15 @@
 
     const taskStore = useTaskStore();
     const authStore = useAuthStore();
-    const historial = ref(taskStore.historic);
 
     /* Cargamos las tareas archivadas desde la BD si el array está vacío */
     onMounted( async () =>{
         if(taskStore.historic == null || taskStore.historic.length == 0){
             const historic = await getHistoric(authStore.id);
-            taskStore.setHistoric(historic);
-            console.log(historic)
+            for (let i = 0; i < historic.length; i++) {
+            
+                taskStore.setHistoric(historic[i]);
+            }
         }
     })
 
