@@ -15,7 +15,7 @@ import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [vue()],
-    base: process.env.NODE_ENV === 'production' ? 'Ironhack_finalproject' : '/',
+    base: process.env.NODE_ENV === 'production' ? '/Ironhack_finalproject/' : '/',
     build: {
         outDir: 'docs',
         rollupOptions: {
@@ -27,6 +27,6 @@ export default defineConfig({
         }
     },
     server: {
-        base: process.env.NODE_ENV === 'production' ? 'Ironhack_finalproject' : '/',
+        base: process.env.NODE_ENV === 'production' ? '/Ironhack_finalproject/' : '/',
     }
 })
