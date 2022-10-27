@@ -5,11 +5,11 @@
             <div class="timer">
                 <label class="title">Timer:</label>
                 <div class="time">
-                    <div class="hours">{{hours}}</div>
+                    <div class="hours">0{{hours}}</div>
                     <div>:</div>
-                    <div class="minuts">{{minutes}}</div>
+                    <div class="minuts">0{{minutes}}</div>
                     <div>:</div>
-                    <div class="seconds">{{seconds}}</div>
+                    <div class="seconds">0{{seconds}}</div>
                 </div>
 
                 <div class="buttons">
