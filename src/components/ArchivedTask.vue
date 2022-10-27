@@ -29,32 +29,35 @@
 </template>
 
 <script setup>
-import moment from 'moment'
-import {deleteTask, updateTask, newHistoric} from '../api/index'
-import { useTaskStore } from '../store/index'
+    import moment from 'moment'
+    import {deleteTask, updateTask, newHistoric} from '../api/index'
+    import { useTaskStore } from '../store/index'
 
-const taskStore = useTaskStore()
+    const taskStore = useTaskStore()
 
-const props = defineProps({task: Object})
+    const props = defineProps({task: Object})
 
-const borrarTarea = async (task) =>{
-    const status = await deleteTask(task.id).then(async () =>{
-        taskStore.deleteArchivedTask(task.id);
-        const updateHistorial = await newHistoric(task.user_id, task.id,  `La tarea ARCHIVADA ${task.id}: ${task.title} ha sido eliminada`).then(() => taskStore.addToHistoric(`La tarea ARCHIVADA ${task.id}: ${task.title} ha sido eliminada`))
-    });
-}
+    /* Borrar una tarea archivada */
+    const borrarTarea = async (task) =>{
+        const status = await deleteTask(task.id).then(async () =>{
+            taskStore.deleteArchivedTask(task.id);
+            /*Añadirlo al historial */
+            const updateHistorial = await newHistoric(task.user_id, task.id,  `La tarea ARCHIVADA ${task.id}: ${task.title} ha sido eliminada`).then(() => taskStore.addToHistoric(`La tarea ARCHIVADA ${task.id}: ${task.title} ha sido eliminada`))
+        });
+    }
 
-const cambiarEstadoTarea = async(task) =>{
-    task.status = "activada";
-    const status = await updateTask(task.id, task).then(async (res) =>{
-        //Borramos la tarea del array de archivadas
-        taskStore.deleteArchivedTask(task.id);
-        //La añadimos al array de tareas
-        taskStore.addTask(task);
-        //Lo añadimos al historial
-        const updateHistorial = await newHistoric(task.user_id, task.id,  `La tarea ARCHIVADA ${task.id}: ${task.title} ha pasado a estar activada de nuevo`).then(() => taskStore.addToHistoric(`La tarea ARCHIVADA ${task.id}: ${task.title} ha pasado a estar activada de nuevo`))
-    })
-}
+    /*Cambiar una tarea de archivada --> Activa*/
+    const cambiarEstadoTarea = async(task) =>{
+        task.status = "activada";
+        const status = await updateTask(task.id, task).then(async (res) =>{
+            //Borramos la tarea del array de archivadas
+            taskStore.deleteArchivedTask(task.id);
+            //La añadimos al array de tareas
+            taskStore.addTask(task);
+            //Lo añadimos al historial
+            const updateHistorial = await newHistoric(task.user_id, task.id,  `La tarea ARCHIVADA ${task.id}: ${task.title} ha pasado a estar activada de nuevo`).then(() => taskStore.addToHistoric(`La tarea ARCHIVADA ${task.id}: ${task.title} ha pasado a estar activada de nuevo`))
+        })
+    }
 
 
 </script>

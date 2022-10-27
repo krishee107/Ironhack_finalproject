@@ -68,10 +68,9 @@
     
     </template>
 
-    <script setup>
+<script setup>
     import {useAuthStore, useTaskStore, useThemeStore} from '../store/index'
     import { onMounted } from 'vue';
-    import { computed, ref, watch } from 'vue';
     import { useRoute } from 'vue-router';
     
     const route = useRoute();
@@ -90,9 +89,9 @@
       taskStore.resetTask();
       authStore.logout();
     }
-    </script>
+</script>
 
-    <style scoped>  
+<style scoped>  
     nav{background-color: var(--nav-bg);}
     .navbar-item{color: var(--nav-color)}
     .button{min-width: 80px;}
@@ -102,4 +101,4 @@
       color: var(--theme-picker-color) !important;
       border-color: var(--theme-picker-color);
     }
-    </style>
+</style>
