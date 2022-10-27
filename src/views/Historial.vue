@@ -1,6 +1,6 @@
 <template>
     <div class="historic">
-        <div class="item" v-for="cambio in taskStore.historic">{{cambio}}</div>
+        <div class="item" v-for="cambio in taskStore.historic.reverse()">{{cambio}}</div>
     </div>
 </template>
 
