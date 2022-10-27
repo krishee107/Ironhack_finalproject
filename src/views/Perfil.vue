@@ -70,7 +70,7 @@
     }
 
     onMounted( async() =>{
-        if(authStore.username == 'Enter a username'){
+        if(authStore.username == 'Enter a username' && authStore.isAuth){
             const profile =  await getProfile(authStore.id);
             authStore.setProfile(profile.username, profile.avatar_url, profile.website);
             username.value = profile.username;
