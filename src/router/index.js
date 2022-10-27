@@ -39,6 +39,11 @@ const routes = [
     path: '/historial',
     name: 'historial',
     component: () => import ('../Views/Historial.vue')
+  },
+  {
+    path: '/pomodoro',
+    name: 'pomodoro',
+    component: () => import ('../Views/Pomodoro.vue')
   }
  // { path: '/about', component: () => import ('../components/Views/About.vue') },
 ]

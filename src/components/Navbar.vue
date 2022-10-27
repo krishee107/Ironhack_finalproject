@@ -21,6 +21,13 @@
                   </span>
                   <span>Home</span>
                 </router-link>
+                
+                <router-link class="navbar-item  ml-4" :to="{name: 'pomodoro'}">
+                  <span class="icon">
+                    <i class="fa-solid fa-stopwatch"></i>
+                  </span>
+                  <span>Pomodoro</span>
+                </router-link>
 
                 <router-link class="navbar-item ml-4" :to="{name: 'archivadas'}">
                   <span class="icon">
@@ -35,6 +42,8 @@
                   </span>
                   <span>Historic</span>
                 </router-link>
+
+
             </div>
             <div class="navbar-end">
               <!-- Dark mode -->
