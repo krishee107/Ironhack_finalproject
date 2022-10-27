@@ -53,7 +53,7 @@
               <!-- Perfil -->
                 <router-link class="navbar-item button  is-link is-light  mr-4 profile" :to="{name: 'perfil'}">Profile</router-link>
                 <!-- Logout-->
-                <button class="navbar-item button  is-danger is-light  logout" @click="logout()">Logout</button>            
+                <router-link class="navbar-item button  is-danger is-light  logout" @click="logout()" :to="{name: 'login'}">Logout</router-link>
             </div>
       </div>
       <div id="navbarBasicExample " class="navbar-menu" v-else>
