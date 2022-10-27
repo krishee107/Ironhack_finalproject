@@ -94,20 +94,25 @@ export const getArchivedTasks = async (user_id) =>{
 }
 
 
-/*task{
-      title:'Titulo modificado',
-      description: 'Descripción modificada',
-    }*/
 
 export const updateTask = async (id, task)=>{
-    const response = await supabase
-    .from('task')
-    .update(task)
-    .eq('id', id)
-    
-    //todo identificar el return y retornar lo que nos interese
-    if(response) return true;
+  try {
+    let { data, error, status } = await supabase
+      .from('task')
+      .update(task)
+      .eq('id', id)
+
+    if (error) {
+      throw error;
+    }
+
+    if (data) {
+      return data
+    }
+  } catch (error) {
+    alert("Update task: "+error.message);
     return false;
+  }
 }
 
 export const deleteTask = async(taskId)=>{
@@ -198,7 +203,7 @@ export const deleteTask = async(taskId)=>{
         return data
       }
     } catch (error) {
-      alert(error.message);
+      alert("Historic: "+error.message);
       return false;
     }
   }

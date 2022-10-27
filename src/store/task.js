@@ -43,7 +43,7 @@ export const useTaskStore = defineStore('task', {
         },
 
         async addTask(task) {
-            const data = await newTask(task[0]);
+            const data = await newTask(task);
             this.tasks.push(data[0])
             return this.tasks;
         },
