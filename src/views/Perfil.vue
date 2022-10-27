@@ -47,8 +47,20 @@
                 <button  class="button is-fullwidth mt-4">Update profile</button>
             </form>
         </div>
-</div>
+    </div>
 
+    <!-- Si no estas login -->
+    <div class="section" v-else>
+        <article class="message is-danger notLogged">
+            <div class="message-header">
+                <p>Danger</p>
+                <button class="delete" aria-label="delete"></button>
+            </div>
+           <div class="message-body">
+                Debes iniciar sesión primero        
+            </div>
+        </article>
+    </div>
 
 
 </template>
