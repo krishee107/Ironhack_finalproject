@@ -1,36 +1,53 @@
 <template>
-    <div class="section">
-        <div class="container">
-            <!-- Si el usuario no está log, le enseñamos el registro-->
-            <div  v-if="!authStore.isAuth">
+    <!-- Si el usuario no está log, le enseñamos el registro-->
+    <div class="register_template columns is-mobile is-variable is-multiline"  v-if="!authStore.isAuth">
+        
+        <div class="img_box column is-5-desktop is-full-mobile is-full-tablet">
+            <img src="../assets/todo2.jpg" alt="">
+        </div>
+
+        <div class="form_box column is-7-desktop is-full-mobile is-full-tablet">
+            <h1>¡Welcome!</h1>
                 <form @submit.prevent="onSubmit">
                     <!-- Email -->
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control">
-                            <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com" v-model="email">
+                            <input class="" type="email" placeholder="Enter an email" v-model="email">
                         </div>
                     </div>
                     <!-- Password -->
                     <div class="field">
                         <label class="label">Password</label>
                         <div class="control">
-                            <input class="input" type="passwod" placeholder="******" v-model="password">
+                            <input class="" type="passwod" placeholder="Enter a password (min 6 characters)" v-model="password">
                         </div>
                     </div>
                     <!-- botón de registro-->
-                    <button type="submit" class="button is-success is-fullwidth">Register me! </button>
-                </form>
+                    <button type="submit" class="button is-success is-fullwidth is-rounded">Register me! </button>
+                    
+                    <span class="login">Already have an account? 
+                        <router-link class="is-text is-light  mr-4 profile" :to="{name: 'login'}">Login here!</router-link>
+                    </span>
+                </form>    
             </div>
 
-            <!-- Si el usuario está registrado y intenta hacer registro -->
-            <div v-else>
-                ¡Gracias por registrarte!   
-            </div>
-
-        </div>
     </div>
-    
+
+    <!-- Si el usuario está registrado y intenta hacer registro -->
+    <div class="section" v-else>
+        <article class="message is-primary">
+           <div class="message-header">
+                    <p>¡Hola!</p>
+                    <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                    <p>Parece que ya tienes una sesión iniciada. </p>
+                    <p>Si lo que deseas es cerrar sesión o iniciar sesión con otra cuenta, puedes hacerlo dándole click al botón de logout en la barra superior o aquí. </p>
+                    <button class="navbar-item button is-danger is-light mt-4 " @click="authStore.logout()">Logout</button>                    
+            </div>
+        </article>
+    </div>
 </template>
 
 <script setup>
@@ -63,12 +80,52 @@
 </script>
 
 <style scoped>
-    form{
-        max-width: 550px;
-        background: white;
-        padding: 30px;
-        margin: 0 auto;
-        border-radius: 10px;
-        box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
-    }
+.register_template {
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.form_box {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+form{
+    margin: 0 auto;
+    width: 50%;
+    min-width: 300px;
+    padding: 30px 0;
+    display: grid;
+}
+input {
+    border: unset;
+    font-size: 1rem;
+    border-bottom: 2px solid black;
+    background-color: white !important;
+    border-radius: 0px;
+    width: 100%;
+    padding-bottom: calc(0.5em - 1px);
+    padding-right: calc(0.75em - 1px);
+    padding-top: calc(0.5em - 1px);
+    padding-left: 2.5em;
+    height: 2.5em;
+}
+h1 {
+    font-size: 4em !important;
+}
+.login{
+    text-align: center;
+    padding: 10px 0;
+}
+
+.img_box.column {
+    padding: unset;
+}
+.img_box.column img {
+    width: fit-content;
+    height: 100%;
+}
 </style>
