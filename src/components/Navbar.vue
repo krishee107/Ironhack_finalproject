@@ -5,14 +5,14 @@
           <img src="http://www.todo.de/assets/todo-logo.png">
         </span>
     
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a role="button" :class="{'is-active': active}" class="navbar-burger" @click="active = !active" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
     
-      <div class="navbar-menu" v-if="authStore.isAuth">
+      <div :class="{'is-active': active}" class="navbar-menu" v-if="authStore.isAuth">
             <div class="navbar-start">
               
                 <router-link class="navbar-item ml-4" :to="{name: 'home'}">
@@ -79,9 +79,10 @@
 
 <script setup>
     import {useAuthStore, useTaskStore, useThemeStore} from '../store/index'
-    import { onMounted } from 'vue';
+    import { onMounted, ref } from 'vue';
     import { useRoute } from 'vue-router';
     
+    let active = ref(false)
     const route = useRoute();
 
 
@@ -98,6 +99,7 @@
       taskStore.resetTask();
       authStore.logout();
     }
+
 </script>
 
 <style scoped>  
@@ -109,5 +111,11 @@
       background-color: var(--theme-picker-bg) !important;
       color: var(--theme-picker-color) !important;
       border-color: var(--theme-picker-color);
+    }
+
+    @media (max-width: 1023px) {
+      .is-active {
+          text-align: center;
+      }
     }
 </style>
