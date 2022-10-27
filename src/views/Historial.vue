@@ -14,13 +14,11 @@
 
     /* Cargamos las tareas archivadas desde la BD si el array está vacío */
     onMounted( async () =>{
-        if(taskStore.historic == null || taskStore.historic.length == 0){
             const historic = await getHistoric(authStore.id);
             for (let i = 0; i < historic.length; i++) {
             
                 taskStore.setHistoric(historic[i]);
             }
-        }
     })
 
 </script>
