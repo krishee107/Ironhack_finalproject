@@ -66,7 +66,7 @@
     import {onMounted, ref} from 'vue'
     import router from '../router'
     import {useAuthStore, useTaskStore} from '../store/index'
-    import {getTasks, login} from '../api/index'
+    import {getArchivedTasks, getHistoric, getTasks, login} from '../api/index'
 
     const authStore = useAuthStore();
 
@@ -87,8 +87,16 @@
             if(status != null && status != false){
                 const login = authStore.login(status, email.value);
                 if(login){
-                    taskStore.tasks = await getTasks(status).then( (tasks) =>{
-                        router.replace({ path: '/' })
+                    //Cargamos las tareas
+                    taskStore.tasks = await getTasks(status).then( async () =>{
+                        //Cargamos el historial
+                        const loadHistoric = await getHistoric(status).then(async (historic) =>{
+                            for (let i = 0; i < historic.length; i++) {
+                                taskStore.setHistoric(historic[i])
+                            }
+                            //Redirigimos al home
+                            router.replace({ path: '/' })
+                        })
                     })
                 }
             }
