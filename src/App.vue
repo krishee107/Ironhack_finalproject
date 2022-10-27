@@ -12,5 +12,7 @@ import Navbar from './components/Navbar.vue';
 <style scoped>
 .content{
     height: 100vh;
+    width: 100%;
+    overflow: hidden;
 }
 </style>
