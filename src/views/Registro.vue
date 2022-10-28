@@ -20,7 +20,7 @@
                     <div class="field">
                         <label class="label">Password</label>
                         <div class="control">
-                            <input class="" type="passwod" placeholder="Enter a password (min 6 characters)" v-model="password">
+                            <input class="" type="password" placeholder="Enter a password (min 6 characters)" v-model="password">
                         </div>
                     </div>
                     <!-- botón de registro-->
