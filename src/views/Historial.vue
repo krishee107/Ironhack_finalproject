@@ -27,9 +27,9 @@
 
 <style scoped>
 .historic {
-    max-height: 700px;
+    max-height: 80vh;
     max-width: 900px;
-    margin: 0 auto;
+    margin: 30px auto;
     overflow-y: auto;
 }
 
